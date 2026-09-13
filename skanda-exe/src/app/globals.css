@@ -4,10 +4,17 @@
 
 :root {
   --background: #0a0a0f;
+  --near-black: #07070b;
   --foreground: #e8e8e8;
+  --secondary-text: #9a9aac;
   --muted: #6b6b80;
   --accent: #4ecdc4;
-  --card: #1a1a2e;
+  --accent-dim: rgba(78, 205, 196, 0.12);
+  --accent-glow: rgba(78, 205, 196, 0.25);
+  --card: #12121b;
+  --card-elevated: #1a1a2e;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(78, 205, 196, 0.2);
 }
 
 * {
@@ -62,4 +69,14 @@ a {
 
 button {
   font: inherit;
+}
+
+::selection {
+  background: rgba(78, 205, 196, 0.25);
+  color: #fff;
+}
+
+nextjs-portal,
+[nextjs-portal] {
+  display: none !important;
 }

@@ -1,0 +1,11 @@
+
+> skanda-exe@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://169.254.112.245:3000
+✓ Ready in 1147ms
+✓ Running next.config.ts took 95ms
+
+ GET / 200 in 1228ms (next.js: 562ms, application-code: 666ms)

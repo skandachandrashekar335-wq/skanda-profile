@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react"
 
 const sections = [
-  { id: "skills", label: "SKILL MAP" },
-  { id: "identity", label: "IDENTITY" },
-  { id: "projects", label: "PROJECTS" },
-  { id: "skills-detail", label: "SKILLS" },
-  { id: "education", label: "EDUCATION" },
-  { id: "ecosystem", label: "ECOSYSTEM" },
-  { id: "achievements", label: "RECORDS" },
-  { id: "contact", label: "CONTACT" },
+  { id: "skills", label: "01 ABOUT" },
+  { id: "projects", label: "02 PROJECTS" },
+  { id: "skills-detail", label: "03 SKILLS" },
+  { id: "qa", label: "04 QA" },
+  { id: "education", label: "05 EDUCATION" },
+  { id: "contact", label: "06 CONTACT" },
 ]
+
+const MONO = "var(--font-geist-mono), 'Geist Mono', monospace"
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("")
@@ -66,37 +66,54 @@ export default function Navigation() {
           zIndex: 50,
           display: "flex",
           justifyContent: "center",
-          gap: 4,
-          padding: "8px 12px",
-          background: "rgba(10, 10, 15, 0.9)",
-          backdropFilter: "blur(8px)",
-          borderTop: "1px solid #111",
+          gap: 2,
+          padding: "8px 8px",
+          background: "rgba(7, 7, 11, 0.92)",
+          backdropFilter: "blur(12px)",
+          borderTop: "1px solid rgba(78,205,196,0.08)",
           opacity: visible ? 1 : 0,
           pointerEvents: visible ? "auto" : "none",
           transition: "opacity 0.4s ease",
         }}
       >
-        {sections.map((s) => (
-          <button
-            key={s.id}
-            onClick={() => scrollTo(s.id)}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "6px 8px",
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: 7,
-              color: activeSection === s.id ? "#4ecdc4" : "#444",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              transition: "color 0.3s ease",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {s.label}
-          </button>
-        ))}
+        {sections.map((s) => {
+          const isActive = activeSection === s.id
+          return (
+            <button
+              key={s.id}
+              onClick={() => scrollTo(s.id)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "6px 6px",
+                fontFamily: MONO,
+                fontSize: 6,
+                color: isActive ? "#4ecdc4" : "#444",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                transition: "color 0.3s ease",
+                whiteSpace: "nowrap",
+                position: "relative",
+              }}
+            >
+              {s.label}
+              {isActive && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 2,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: 12,
+                    height: 1,
+                    background: "#4ecdc4",
+                  }}
+                />
+              )}
+            </button>
+          )
+        })}
       </nav>
     )
   }
@@ -111,50 +128,54 @@ export default function Navigation() {
         zIndex: 50,
         display: "flex",
         flexDirection: "column",
-        gap: 12,
+        gap: 8,
         alignItems: "flex-end",
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? "auto" : "none",
         transition: "opacity 0.4s ease",
       }}
     >
-      {sections.map((s) => (
-        <button
-          key={s.id}
-          onClick={() => scrollTo(s.id)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "4px 0",
-          }}
-        >
-          <span
+      {sections.map((s) => {
+        const isActive = activeSection === s.id
+        return (
+          <button
+            key={s.id}
+            onClick={() => scrollTo(s.id)}
             style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: 8,
-              color: activeSection === s.id ? "#4ecdc4" : "#333",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              transition: "color 0.3s ease",
-              opacity: activeSection === s.id ? 1 : 0.5,
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "4px 0",
             }}
           >
-            {s.label}
-          </span>
-          <div
-            style={{
-              width: activeSection === s.id ? 16 : 6,
-              height: 1,
-              background: activeSection === s.id ? "#4ecdc4" : "#333",
-              transition: "all 0.3s ease",
-            }}
-          />
-        </button>
-      ))}
+            <span
+              style={{
+                fontFamily: MONO,
+                fontSize: 8,
+                color: isActive ? "#4ecdc4" : "#333",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                transition: "color 0.3s ease",
+                opacity: isActive ? 1 : 0.5,
+              }}
+            >
+              {s.label}
+            </span>
+            <div
+              style={{
+                width: isActive ? 20 : 6,
+                height: 1,
+                background: isActive ? "#4ecdc4" : "#333",
+                transition: "all 0.3s ease",
+                boxShadow: isActive ? "0 0 8px rgba(78,205,196,0.4)" : "none",
+              }}
+            />
+          </button>
+        )
+      })}
     </nav>
   )
 }

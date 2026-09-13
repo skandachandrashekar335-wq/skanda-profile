@@ -13,8 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SKANDA.EXE",
-  description: "Cinematic, scroll-driven interactive developer portfolio",
+  title: "Skanda Chandrashekhar — BCA Student | Software Developer | QA & AI Automation",
+  description:
+    "Portfolio of Skanda Chandrashekhar, a BCA student building software projects across web development, AI, automation and software testing.",
+  openGraph: {
+    title: "Skanda Chandrashekhar — BCA Student | Software Developer | QA & AI Automation",
+    description:
+      "Portfolio of Skanda Chandrashekhar, a BCA student building software projects across web development, AI, automation and software testing.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

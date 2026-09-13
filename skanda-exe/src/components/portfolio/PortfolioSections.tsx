@@ -1,9 +1,12 @@
 "use client"
 
-import { useRef, useEffect, type ReactNode } from "react"
+import { useRef, useEffect, useState, type ReactNode } from "react"
 import { sampleProjects } from "@/data/projects/sample-projects"
 import { educationData } from "@/data/education/education-data"
 import { profileData } from "@/data/profile/profile-data"
+
+const MONO = "var(--font-geist-mono), 'Geist Mono', monospace"
+const SANS = "var(--font-geist-sans), 'Geist', sans-serif"
 
 function useReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null)
@@ -23,8 +26,8 @@ function useReveal(threshold = 0.15) {
     }
 
     el.style.opacity = "0"
-    el.style.transform = "translateY(24px)"
-    el.style.transition = "opacity 0.7s ease, transform 0.7s ease"
+    el.style.transform = "translateY(20px)"
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,11 +47,30 @@ function useReveal(threshold = 0.15) {
   return ref
 }
 
+function ModuleLabel({ number, title }: { number: string; title: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+      <span
+        style={{
+          fontFamily: MONO,
+          fontSize: "clamp(7px, 0.7vw, 8px)",
+          color: "#4ecdc4",
+          letterSpacing: "0.15em",
+          opacity: 0.6,
+        }}
+      >
+        MODULE {number}
+      </span>
+      <div style={{ flex: 1, height: 1, background: "rgba(78,205,196,0.1)" }} />
+    </div>
+  )
+}
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <div
       style={{
-        fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+        fontFamily: MONO,
         fontSize: "clamp(8px, 0.85vw, 10px)",
         color: "#4ecdc4",
         letterSpacing: "0.25em",
@@ -71,7 +93,7 @@ function SectionTitle({
   return (
     <h2
       style={{
-        fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+        fontFamily: MONO,
         fontSize: "clamp(24px, 3.5vw, 48px)",
         color: "#fff",
         letterSpacing: "0.05em",
@@ -87,36 +109,31 @@ function SectionTitle({
   )
 }
 
-function Divider() {
-  return (
-    <div
-      style={{
-        width: 48,
-        height: 1,
-        background: "#222",
-        margin: "0 auto",
-      }}
-    />
-  )
-}
+function StatusBadge({ label, variant = "default" }: { label: string; variant?: "default" | "active" | "learning" }) {
+  const bg = variant === "active" ? "rgba(78,205,196,0.1)" : variant === "learning" ? "rgba(78,205,196,0.06)" : "rgba(255,255,255,0.03)"
+  const color = variant === "active" ? "#4ecdc4" : variant === "learning" ? "#4ecdc4" : "#666"
 
-function ThinLine() {
   return (
-    <div
+    <span
       style={{
-        width: "100%",
-        height: 1,
-        background: "#111",
-        marginTop: 48,
-        marginBottom: 48,
+        fontFamily: MONO,
+        fontSize: "clamp(7px, 0.7vw, 8px)",
+        color,
+        letterSpacing: "0.15em",
+        textTransform: "uppercase",
+        padding: "3px 8px",
+        background: bg,
+        display: "inline-block",
       }}
-    />
+    >
+      {label}
+    </span>
   )
 }
 
 const SECTION_STYLE: React.CSSProperties = {
-  minHeight: "80vh",
-  padding: "clamp(60px, 10vw, 140px) clamp(24px, 6vw, 160px)",
+  minHeight: "60vh",
+  padding: "clamp(60px, 8vw, 120px) clamp(24px, 6vw, 160px)",
   position: "relative",
   zIndex: 10,
 }
@@ -126,146 +143,199 @@ const INNER_STYLE: React.CSSProperties = {
   margin: "0 auto",
 }
 
-/* ─── IDENTITY ──────────────────────────────────────────────── */
+/* ─── ABOUT ──────────────────────────────────────────────── */
 
-export function IdentitySection() {
+export function AboutSection() {
   const ref = useReveal()
   return (
-    <section ref={ref} id="identity" style={SECTION_STYLE}>
+    <section ref={ref} id="skills" style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.IDENTITY</SectionLabel>
-        <SectionTitle>SKANDA.EXE</SectionTitle>
+        <ModuleLabel number="01" title="IDENTITY CORE" />
+        <SectionLabel>01 — ABOUT</SectionLabel>
+        <SectionTitle>SKANDA CHANDRASHEKHAR</SectionTitle>
+
+        <div
+          style={{
+            marginTop: 20,
+            display: "flex",
+            gap: 16,
+            flexWrap: "wrap",
+            fontFamily: MONO,
+            fontSize: "clamp(9px, 0.9vw, 11px)",
+            color: "#4ecdc4",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}
+        >
+          <span>BCA Student</span>
+          <span style={{ color: "#333" }}>·</span>
+          <span>Software Developer</span>
+          <span style={{ color: "#333" }}>·</span>
+          <span>QA / AI Automation</span>
+        </div>
 
         <div
           style={{
             marginTop: 32,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(11px, 1.3vw, 15px)",
-            color: "#fff",
-            letterSpacing: "0.04em",
-            lineHeight: 1.6,
-            textTransform: "uppercase",
-            fontWeight: 300,
+            fontFamily: SANS,
+            fontSize: "clamp(11px, 1.2vw, 15px)",
+            color: "#999",
+            lineHeight: 1.8,
+            maxWidth: 700,
           }}
         >
-          {profileData.name}
+          BCA student building practical software systems across web development,
+          AI, automation and software testing. I learn by turning ideas into working
+          systems, testing them, debugging failures and iterating.
         </div>
 
         <div
           style={{
             marginTop: 16,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(9px, 0.95vw, 12px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          BCA STUDENT
-        </div>
-
-        <div
-          style={{
-            marginTop: 8,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(9px, 0.95vw, 12px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          SOFTWARE DEVELOPER
-        </div>
-
-        <div
-          style={{
-            marginTop: 8,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(9px, 0.95vw, 12px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          AI / AUTOMATION / QA
-        </div>
-
-        <Divider />
-
-        <div
-          style={{
-            marginTop: 32,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(10px, 1vw, 13px)",
-            color: "#999",
+            fontFamily: SANS,
+            fontSize: "clamp(10px, 1.1vw, 14px)",
+            color: "#666",
             lineHeight: 1.8,
-            letterSpacing: "0.02em",
+            maxWidth: 700,
           }}
         >
-          Software developer and BCA student exploring the intersection of
-          software development, AI, automation and software testing. I enjoy
-          turning ideas into practical systems and experimenting with new
-          technologies, interfaces and workflows.
+          Currently pursuing BCA at Dayananda Sagar College of Arts, Science &
+          Commerce, Bangalore. Interested in software development, AI/automation,
+          voice interfaces, computer vision, agentic AI and software quality.
         </div>
 
-        <Divider />
-
+        {/* WHAT I'M LOOKING FOR */}
         <div
           style={{
-            marginTop: 32,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(10px, 1vw, 13px)",
-            color: "#999",
-            lineHeight: 1.8,
-            letterSpacing: "0.02em",
+            marginTop: 48,
+            padding: "clamp(20px, 2.5vw, 32px)",
+            background: "#12121b",
+            border: "1px solid rgba(78,205,196,0.1)",
           }}
         >
-          Currently completing Bachelor of Computer Applications at{" "}
-          {profileData.college}, {profileData.location}.
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
+          >
+            WHAT I&apos;M LOOKING FOR
+          </div>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: 12,
+            }}
+          >
+            OPEN TO
+          </div>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {[
+              "Software Development Internships",
+              "QA / Software Testing Internships",
+              "AI / Automation Internships",
+            ].map((item) => (
+              <span
+                key={item}
+                style={{
+                  fontFamily: MONO,
+                  fontSize: "clamp(8px, 0.8vw, 10px)",
+                  color: "#888",
+                  padding: "5px 12px",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
-
-        <div
-          style={{
-            marginTop: 16,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(10px, 1vw, 13px)",
-            color: "#999",
-            lineHeight: 1.8,
-            letterSpacing: "0.02em",
-          }}
-        >
-          Interests span real-time web systems, voice interfaces, computer
-          vision, agentic AI, and the intersection of design and engineering.
-        </div>
-
-        <Divider />
 
         <div
           style={{
             marginTop: 40,
             display: "flex",
-            gap: 24,
-            justifyContent: "center",
+            gap: 16,
             flexWrap: "wrap",
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(8px, 0.8vw, 10px)",
-            color: "#444",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
           }}
         >
-          <span>{profileData.name.toUpperCase()}</span>
-          <span style={{ color: "#222" }}>|</span>
-          <span>{profileData.degree}</span>
-          <span style={{ color: "#222" }}>|</span>
-          <span>{profileData.location.toUpperCase()}</span>
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault()
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+            }}
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(9px, 0.9vw, 11px)",
+              color: "#0a0a0f",
+              background: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              padding: "10px 24px",
+              border: "none",
+              cursor: "pointer",
+              textDecoration: "none",
+              display: "inline-block",
+              transition: "opacity 0.3s ease",
+            }}
+          >
+            VIEW PROJECTS →
+          </a>
+          <a
+            href={profileData.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(9px, 0.9vw, 11px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              padding: "10px 24px",
+              border: "1px solid rgba(78,205,196,0.2)",
+              textDecoration: "none",
+              display: "inline-block",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            GITHUB →
+          </a>
+          <a
+            href={profileData.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(9px, 0.9vw, 11px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              padding: "10px 24px",
+              border: "1px solid rgba(78,205,196,0.2)",
+              textDecoration: "none",
+              display: "inline-block",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            LINKEDIN →
+          </a>
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── PROJECTS ──────────────────────────────────────────────── */
+/* ─── PROJECTS ──────────────────────────────────────────── */
 
 function ProjectModule({
   project,
@@ -275,184 +345,98 @@ function ProjectModule({
   index: number
 }) {
   const ref = useReveal(0.1)
+  const [hovered, setHovered] = useState(false)
+
+  const statusLabel =
+    project.status === "in-progress" ? "CURRENT BUILD" :
+    project.status === "deployed" ? "DEPLOYED" :
+    project.status === "completed" ? "COMPLETED" :
+    project.status === "academic-project" ? "ACADEMIC PROJECT" :
+    project.status === "personal-project" ? "PERSONAL PROJECT" :
+    project.status === "experiment" ? "EXPERIMENT" :
+    project.status === "project" ? "PROJECT" :
+    project.status.toUpperCase()
+
   const statusColor =
-    project.status === "deployed"
+    project.status === "deployed" || project.status === "completed"
       ? "#4ecdc4"
-      : project.status === "completed"
-        ? "#4ecdc4"
-        : project.status === "in-progress"
-          ? "#c4a74e"
-          : project.status === "testing"
-            ? "#c47a4e"
-            : "#666"
+      : project.status === "in-progress"
+      ? "#c4a74e"
+      : "#888"
 
   return (
     <div
       ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        border: "1px solid #111",
+        border: `1px solid ${hovered ? "rgba(78,205,196,0.15)" : "rgba(255,255,255,0.04)"}`,
         padding: "clamp(24px, 3vw, 40px)",
         marginBottom: 24,
-        background: "#08080c",
+        background: hovered ? "#12121b" : "#0c0c14",
+        transition: "all 0.3s ease",
+        transform: hovered ? "translateY(-2px)" : "translateY(0)",
       }}
     >
       <div
         style={{
-          fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-          fontSize: "clamp(7px, 0.7vw, 9px)",
-          color: "#333",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          marginBottom: 12,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          flexWrap: "wrap",
+          gap: 12,
         }}
       >
-        PROJECT_{String(index + 1).padStart(2, "0")}
+        <div>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#333",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: 8,
+            }}
+          >
+            PROJECT_{String(index + 1).padStart(2, "0")}
+          </div>
+
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(16px, 2vw, 28px)",
+              color: "#fff",
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+            }}
+          >
+            {project.name}
+          </div>
+        </div>
+
+        <StatusBadge label={statusLabel} variant={project.status === "deployed" || project.status === "completed" ? "active" : "default"} />
       </div>
 
+      {/* Value proposition */}
       <div
         style={{
-          fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-          fontSize: "clamp(16px, 2vw, 28px)",
-          color: "#fff",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          fontWeight: 300,
-        }}
-      >
-        {project.name}
-      </div>
-
-      <div
-        style={{
-          fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-          fontSize: "clamp(9px, 0.9vw, 11px)",
-          color: "#666",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          marginTop: 8,
-          marginBottom: 20,
-        }}
-      >
-        {project.shortDescription}
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-          gap: 20,
+          fontFamily: SANS,
+          fontSize: "clamp(11px, 1.2vw, 15px)",
+          color: "#999",
+          lineHeight: 1.7,
           marginTop: 16,
+          maxWidth: 700,
         }}
       >
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            STATUS
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(9px, 0.9vw, 11px)",
-              color: statusColor,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              padding: "4px 8px",
-              background:
-                project.status === "deployed"
-                  ? "#0a1a1a"
-                  : "#1a1a0a",
-              display: "inline-block",
-            }}
-          >
-            {project.status.toUpperCase()}
-          </div>
-        </div>
-
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            CATEGORY
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(9px, 0.9vw, 11px)",
-              color: "#888",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            {project.category}
-          </div>
-        </div>
-
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            PROGRESS
-          </div>
-          <div
-            style={{
-              width: "100%",
-              height: 2,
-              background: "#111",
-              marginTop: 6,
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 0,
-                height: "100%",
-                width: `${project.progress}%`,
-                background: "#4ecdc4",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(8px, 0.8vw, 10px)",
-              color: "#555",
-              letterSpacing: "0.1em",
-              marginTop: 4,
-            }}
-          >
-            {project.progress}%
-          </div>
-        </div>
+        {project.description}
       </div>
 
+      {/* Tech stack */}
       <div style={{ marginTop: 20 }}>
         <div
           style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+            fontFamily: MONO,
             fontSize: "clamp(7px, 0.7vw, 9px)",
             color: "#4ecdc4",
             letterSpacing: "0.2em",
@@ -460,18 +444,18 @@ function ProjectModule({
             marginBottom: 8,
           }}
         >
-          TECHNOLOGIES
+          STACK
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           {project.technologies.map((t) => (
             <span
               key={t}
               style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+                fontFamily: MONO,
                 fontSize: "clamp(8px, 0.8vw, 10px)",
                 color: "#888",
                 padding: "4px 10px",
-                border: "1px solid #1a1a1a",
+                border: "1px solid rgba(255,255,255,0.06)",
                 letterSpacing: "0.05em",
               }}
             >
@@ -481,11 +465,12 @@ function ProjectModule({
         </div>
       </div>
 
+      {/* Key features */}
       {project.features.length > 0 && (
         <div style={{ marginTop: 16 }}>
           <div
             style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+              fontFamily: MONO,
               fontSize: "clamp(7px, 0.7vw, 9px)",
               color: "#4ecdc4",
               letterSpacing: "0.2em",
@@ -493,71 +478,22 @@ function ProjectModule({
               marginBottom: 8,
             }}
           >
-            FEATURES
+            KEY CAPABILITIES
           </div>
           {project.features.map((f) => (
             <div
               key={f}
               style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+                fontFamily: MONO,
                 fontSize: "clamp(9px, 0.9vw, 11px)",
                 color: "#666",
-                padding: "4px 0",
+                padding: "3px 0",
                 letterSpacing: "0.03em",
               }}
             >
-              {f}
+              — {f}
             </div>
           ))}
-        </div>
-      )}
-
-      {(project.github || project.demo) && (
-        <div
-          style={{
-            marginTop: 20,
-            display: "flex",
-            gap: 16,
-          }}
-        >
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(8px, 0.8vw, 10px)",
-                color: "#4ecdc4",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                border: "1px solid #1a3a3a",
-                padding: "6px 16px",
-                transition: "border-color 0.3s ease",
-              }}
-            >
-              VIEW SOURCE
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(8px, 0.8vw, 10px)",
-                color: "#888",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                border: "1px solid #1a1a1a",
-                padding: "6px 16px",
-                transition: "border-color 0.3s ease",
-              }}
-            >
-              VIEW PROJECT
-            </a>
-          )}
         </div>
       )}
     </div>
@@ -566,29 +502,29 @@ function ProjectModule({
 
 export function ProjectsSection() {
   const ref = useReveal()
-  const displayProjects = sampleProjects
 
   return (
     <section ref={ref} id="projects" style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.BUILD_LOG</SectionLabel>
-        <SectionTitle>PROJECTS</SectionTitle>
+        <ModuleLabel number="02" title="PROJECT ENGINE" />
+        <SectionLabel>02 — PROJECTS</SectionLabel>
+        <SectionTitle>SELECTED PROJECTS</SectionTitle>
 
         <div
           style={{
             marginTop: 12,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+            fontFamily: MONO,
             fontSize: "clamp(9px, 0.9vw, 11px)",
             color: "#555",
             letterSpacing: "0.1em",
             textTransform: "uppercase",
           }}
         >
-          {displayProjects.length} VERIFIED PROJECTS
+          PERSONAL & ACADEMIC
         </div>
 
         <div style={{ marginTop: 48 }}>
-          {displayProjects.map((project, i) => (
+          {sampleProjects.map((project, i) => (
             <ProjectModule key={project.id} project={project} index={i} />
           ))}
         </div>
@@ -597,7 +533,7 @@ export function ProjectsSection() {
   )
 }
 
-/* ─── SKILLS + LEARNING LOG ─────────────────────────────────── */
+/* ─── SKILLS ─────────────────────────────────────────────── */
 
 function SkillCategory({
   label,
@@ -606,22 +542,25 @@ function SkillCategory({
 }: {
   label: string
   items: string[]
-  status?: "ACTIVE" | "LEARNING" | "EXPLORING"
+  status?: "BUILDING" | "PRACTICING" | "LEARNING" | "EXPLORING"
 }) {
-  const statusBg =
-    status === "ACTIVE"
-      ? "#0a1a1a"
-      : status === "LEARNING"
-        ? "#0a1520"
-        : status === "EXPLORING"
-          ? "#141420"
-          : "transparent"
+  const [hovered, setHovered] = useState(false)
 
   return (
-    <div style={{ marginBottom: 32 }}>
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        marginBottom: 32,
+        padding: "16px 20px",
+        background: hovered ? "#12121b" : "transparent",
+        border: `1px solid ${hovered ? "rgba(78,205,196,0.1)" : "transparent"}`,
+        transition: "all 0.3s ease",
+      }}
+    >
       <div
         style={{
-          fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+          fontFamily: MONO,
           fontSize: "clamp(8px, 0.85vw, 10px)",
           color: "#4ecdc4",
           letterSpacing: "0.2em",
@@ -631,32 +570,16 @@ function SkillCategory({
       >
         {label}
       </div>
-      {status && (
-        <div
-          style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(7px, 0.7vw, 8px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            marginBottom: 12,
-            padding: "3px 8px",
-            background: statusBg,
-            display: "inline-block",
-          }}
-        >
-          {status}
-        </div>
-      )}
+      {status && <StatusBadge label={status} variant={status === "BUILDING" ? "active" : "learning"} />}
       {items.map((item) => (
         <div
           key={item}
           style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+            fontFamily: MONO,
             fontSize: "clamp(10px, 1vw, 13px)",
             color: "#777",
             padding: "5px 0",
-            borderBottom: "1px solid #0d0d0d",
+            borderBottom: "1px solid rgba(255,255,255,0.03)",
             letterSpacing: "0.04em",
           }}
         >
@@ -671,117 +594,325 @@ export function SkillsSection() {
   const ref = useReveal()
   const groups = [
     {
-      label: "PROGRAMMING",
-      items: ["JavaScript", "TypeScript", "Python", "Java", "SQL"],
-      status: "ACTIVE" as const,
+      label: "SOFTWARE DEVELOPMENT",
+      items: ["Python", "Java", "JavaScript", "TypeScript", "SQL"],
+      status: "BUILDING" as const,
     },
     {
       label: "WEB DEVELOPMENT",
       items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS"],
-      status: "ACTIVE" as const,
+      status: "BUILDING" as const,
     },
     {
-      label: "AI / MACHINE LEARNING",
-      items: ["AI", "Machine Learning", "LLM Concepts", "AI Automation", "Prompt Engineering"],
+      label: "AI / AUTOMATION",
+      items: ["AI", "ML Concepts", "LLM Concepts", "Prompt Engineering", "Agentic AI", "Automation"],
       status: "EXPLORING" as const,
     },
     {
       label: "SOFTWARE TESTING / QA",
-      items: [
-        "Manual Testing",
-        "Test Case Design",
-        "Functional Testing",
-        "Regression Testing",
-        "UI Testing",
-        "API Testing",
-        "Bug Reporting",
-        "Quality Assurance",
-      ],
+      items: ["Manual Testing", "Test Case Design", "Functional Testing", "Regression Testing", "UI Testing", "API Testing", "Bug Reporting"],
       status: "LEARNING" as const,
     },
     {
-      label: "TOOLS / DEVELOPMENT",
-      items: ["Git", "GitHub", "VS Code", "Firebase", "Supabase", "Linux / Terminal"],
+      label: "TOOLS / SYSTEMS",
+      items: ["Git", "GitHub", "VS Code", "Linux", "Terminal", "Firebase", "Supabase", "Networking"],
+      status: "PRACTICING" as const,
     },
     {
-      label: "3D / CREATIVE",
-      items: ["Three.js", "WebGL", "GSAP", "Interactive Web Experiences"],
+      label: "CREATIVE / INTERACTIVE",
+      items: ["Three.js", "WebGL", "GSAP", "React Three Fiber", "GLTF"],
+      status: "EXPLORING" as const,
     },
   ]
 
   return (
     <section ref={ref} id="skills-detail" style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.CAPABILITIES</SectionLabel>
-        <SectionTitle>SKILLS</SectionTitle>
+        <ModuleLabel number="03" title="CAPABILITY MEMORY" />
+        <SectionLabel>03 — SKILLS</SectionLabel>
+        <SectionTitle>CAPABILITIES</SectionTitle>
 
         <div
           style={{
             marginTop: 48,
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "clamp(24px, 3vw, 48px)",
+            gap: "clamp(16px, 2vw, 32px)",
           }}
         >
           {groups.map((group) => (
             <SkillCategory key={group.label} {...group} />
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
 
-        <ThinLine />
+/* ─── QA ─────────────────────────────────────────────────── */
 
-        <SectionLabel>CURRENTLY EXPLORING</SectionLabel>
-        <SectionTitle style={{ fontSize: "clamp(16px, 2vw, 28px)" }}>
-          LEARNING.LOG
-        </SectionTitle>
+export function QASection() {
+  const ref = useReveal()
+  return (
+    <section ref={ref} id="qa" style={SECTION_STYLE}>
+      <div style={INNER_STYLE}>
+        <ModuleLabel number="04" title="QUALITY ASSURANCE" />
+        <SectionLabel>04 — SOFTWARE TESTING / QA</SectionLabel>
+        <SectionTitle>QA CAPABILITY</SectionTitle>
+
+        <div
+          style={{
+            marginTop: 16,
+            fontFamily: MONO,
+            fontSize: "clamp(9px, 0.9vw, 11px)",
+            color: "#4ecdc4",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}
+        >
+          BUILD → TEST → BREAK → FIX → VERIFY
+        </div>
+
+        <StatusBadge label="CURRENTLY LEARNING" variant="learning" />
 
         <div
           style={{
             marginTop: 32,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: 16,
+            fontFamily: SANS,
+            fontSize: "clamp(11px, 1.2vw, 15px)",
+            color: "#999",
+            lineHeight: 1.8,
+            maxWidth: 700,
+          }}
+        >
+          Actively learning software testing methodologies and practices. Building
+          an understanding of how to design effective test cases, identify bugs
+          systematically, and ensure software quality across web applications and
+          AI-powered systems.
+        </div>
+
+        {/* Testing workflow visualization */}
+        <div style={{ marginTop: 48 }}>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: 20,
+            }}
+          >
+            TEST WORKFLOW
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: 0,
+              flexWrap: "wrap",
+              alignItems: "stretch",
+            }}
+          >
+            {[
+              { step: "TEST CASE", desc: "Define expected behavior" },
+              { step: "EXECUTE", desc: "Run against the system" },
+              { step: "COMPARE", desc: "Expected vs actual output" },
+              { step: "REPORT", desc: "Document the bug" },
+              { step: "FIX", desc: "Resolve the issue" },
+              { step: "VERIFY", desc: "Confirm the fix works" },
+            ].map((item, i, arr) => (
+              <div
+                key={item.step}
+                style={{
+                  flex: "1 1 120px",
+                  padding: "16px 12px",
+                  borderRight: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "clamp(7px, 0.7vw, 8px)",
+                    color: "#4ecdc4",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    marginBottom: 6,
+                  }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "clamp(8px, 0.85vw, 10px)",
+                    color: "#ccc",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    marginBottom: 4,
+                  }}
+                >
+                  {item.step}
+                </div>
+                <div
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "clamp(8px, 0.8vw, 10px)",
+                    color: "#555",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {item.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Testing concepts */}
+        <div style={{ marginTop: 48 }}>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginBottom: 16,
+            }}
+          >
+            TESTING CONCEPTS
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: 10,
+            }}
+          >
+            {[
+              "Test Case Design",
+              "Positive / Negative Testing",
+              "Functional Testing",
+              "Regression Testing",
+              "UI Testing",
+              "API Testing",
+              "Bug Reporting",
+              "Boundary-Value Testing",
+              "Exploratory Testing",
+              "Requirement-Based Testing",
+            ].map((item) => (
+              <div
+                key={item}
+                style={{
+                  fontFamily: MONO,
+                  fontSize: "clamp(9px, 0.9vw, 11px)",
+                  color: "#777",
+                  padding: "8px 12px",
+                  border: "1px solid rgba(255,255,255,0.04)",
+                  background: "#0c0c14",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── HOW I WORK ─────────────────────────────────────────── */
+
+export function HowIWorkSection() {
+  const ref = useReveal()
+  return (
+    <section ref={ref} style={SECTION_STYLE}>
+      <div style={INNER_STYLE}>
+        <SectionLabel>PROCESS</SectionLabel>
+        <SectionTitle style={{ fontSize: "clamp(18px, 2.5vw, 32px)" }}>
+          HOW I WORK
+        </SectionTitle>
+
+        <div
+          style={{
+            marginTop: 40,
+            display: "flex",
+            gap: 0,
+            flexWrap: "wrap",
+            alignItems: "stretch",
           }}
         >
           {[
-            { area: "Software Testing / QA", status: "LEARNING" },
-            { area: "Agentic AI", status: "EXPLORING" },
-            { area: "AI / Automation", status: "EXPLORING" },
-            { area: "Linux / Networking", status: "PRACTICING" },
-            { area: "Web Development", status: "BUILDING" },
-            { area: "3D / Creative Tech", status: "EXPLORING" },
-          ].map((item) => (
+            { num: "01", label: "IDEATE", desc: "Define the problem and plan the approach" },
+            { num: "02", label: "BUILD", desc: "Write code and create the system" },
+            { num: "03", label: "TEST", desc: "Verify functionality and catch bugs" },
+            { num: "04", label: "DEBUG", desc: "Identify root causes and fix issues" },
+            { num: "05", label: "ITERATE", desc: "Refine based on testing and feedback" },
+            { num: "06", label: "SHIP", desc: "Package, deploy or present the working result" },
+          ].map((step, i, arr) => (
             <div
-              key={item.area}
+              key={step.label}
               style={{
-                border: "1px solid #111",
-                padding: "12px 16px",
-                background: "#08080c",
+                flex: "1 1 130px",
+                padding: "20px 16px",
+                borderRight: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                textAlign: "center",
+                position: "relative",
               }}
             >
               <div
                 style={{
-                  fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                  fontSize: "clamp(9px, 0.9vw, 11px)",
-                  color: "#ccc",
+                  fontFamily: MONO,
+                  fontSize: "clamp(14px, 1.8vw, 22px)",
+                  color: "#4ecdc4",
                   letterSpacing: "0.05em",
-                  textTransform: "uppercase",
+                  fontWeight: 300,
+                  marginBottom: 8,
                 }}
               >
-                {item.area}
+                {step.num}
               </div>
               <div
                 style={{
-                  fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                  fontSize: "clamp(7px, 0.7vw, 8px)",
-                  color: "#4ecdc4",
+                  fontFamily: MONO,
+                  fontSize: "clamp(9px, 0.9vw, 11px)",
+                  color: "#ccc",
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  marginTop: 6,
+                  marginBottom: 6,
                 }}
               >
-                {item.status}
+                {step.label}
               </div>
+              <div
+                style={{
+                  fontFamily: SANS,
+                  fontSize: "clamp(8px, 0.8vw, 10px)",
+                  color: "#555",
+                  lineHeight: 1.5,
+                }}
+              >
+                {step.desc}
+              </div>
+              {i < arr.length - 1 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    right: -6,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    fontFamily: MONO,
+                    fontSize: "clamp(8px, 0.8vw, 10px)",
+                    color: "#333",
+                    zIndex: 1,
+                  }}
+                >
+                  →
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -790,207 +921,222 @@ export function SkillsSection() {
   )
 }
 
-/* ─── EDUCATION ─────────────────────────────────────────────── */
+/* ─── EDUCATION ──────────────────────────────────────────── */
 
 export function EducationSection() {
   const ref = useReveal()
   return (
     <section ref={ref} id="education" style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.EDUCATION</SectionLabel>
+        <ModuleLabel number="05" title="FOUNDATION" />
+        <SectionLabel>05 — EDUCATION</SectionLabel>
         <SectionTitle>EDUCATION</SectionTitle>
 
-        <div
-          style={{
-            marginTop: 48,
-            border: "1px solid #111",
-            padding: "clamp(24px, 3vw, 40px)",
-            background: "#08080c",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#333",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 16,
-            }}
-          >
-            {educationData.startYear} — {educationData.endYear}
-          </div>
-
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(14px, 1.8vw, 24px)",
-              color: "#fff",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              fontWeight: 300,
-            }}
-          >
-            {educationData.degree}
-          </div>
-
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(10px, 1vw, 13px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              marginTop: 8,
-            }}
-          >
-            {educationData.institution}
-          </div>
-
-          <div
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(9px, 0.9vw, 11px)",
-              color: "#666",
-              lineHeight: 1.8,
-              marginTop: 16,
-              letterSpacing: "0.02em",
-            }}
-          >
-            {educationData.description}
-          </div>
-
-          {educationData.coursework.length > 0 && (
-            <div style={{ marginTop: 24 }}>
+        <div style={{ marginTop: 48 }}>
+          {educationData.map((edu) => {
+            const isPursuing = edu.status === "Currently Pursuing"
+            return (
               <div
+                key={edu.id}
                 style={{
-                  fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                  fontSize: "clamp(7px, 0.7vw, 9px)",
-                  color: "#4ecdc4",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  marginBottom: 12,
+                  border: "1px solid rgba(255,255,255,0.04)",
+                  padding: "clamp(24px, 3vw, 40px)",
+                  background: "#0c0c14",
+                  marginBottom: 24,
                 }}
               >
-                COURSEWORK
-              </div>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {educationData.coursework.map((c) => (
-                  <span
-                    key={c}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
+                    gap: 12,
+                    marginBottom: 16,
+                  }}
+                >
+                  <div
                     style={{
-                      fontFamily:
-                        "var(--font-geist-mono), 'Geist Mono', monospace",
-                      fontSize: "clamp(8px, 0.8vw, 10px)",
-                      color: "#666",
-                      padding: "4px 10px",
-                      border: "1px solid #1a1a1a",
-                      letterSpacing: "0.05em",
+                      fontFamily: MONO,
+                      fontSize: "clamp(7px, 0.7vw, 9px)",
+                      color: "#444",
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
                     }}
                   >
-                    {c}
-                  </span>
-                ))}
+                    {edu.startDate} — {edu.endDate}
+                  </div>
+                  <StatusBadge
+                    label={isPursuing ? "CURRENTLY PURSUING" : "COMPLETED"}
+                    variant={isPursuing ? "active" : "default"}
+                  />
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "clamp(14px, 1.8vw, 24px)",
+                    color: "#fff",
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                    fontWeight: 300,
+                  }}
+                >
+                  {edu.degree}
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "clamp(10px, 1vw, 13px)",
+                    color: "#4ecdc4",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    marginTop: 8,
+                  }}
+                >
+                  {edu.institution}
+                </div>
+
+                {edu.location && (
+                  <div
+                    style={{
+                      fontFamily: MONO,
+                      fontSize: "clamp(8px, 0.8vw, 10px)",
+                      color: "#555",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      marginTop: 6,
+                    }}
+                  >
+                    {edu.location}
+                  </div>
+                )}
+
+                <div
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "clamp(10px, 1vw, 13px)",
+                    color: "#666",
+                    lineHeight: 1.8,
+                    marginTop: 16,
+                  }}
+                >
+                  {edu.description}
+                </div>
+
+                {edu.coursework.length > 0 && (
+                  <div style={{ marginTop: 24 }}>
+                    <div
+                      style={{
+                        fontFamily: MONO,
+                        fontSize: "clamp(7px, 0.7vw, 9px)",
+                        color: "#4ecdc4",
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        marginBottom: 12,
+                      }}
+                    >
+                      RELEVANT AREAS
+                    </div>
+                    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                      {edu.coursework.map((c) => (
+                        <span
+                          key={c}
+                          style={{
+                            fontFamily: MONO,
+                            fontSize: "clamp(8px, 0.8vw, 10px)",
+                            color: "#666",
+                            padding: "4px 10px",
+                            border: "1px solid rgba(255,255,255,0.06)",
+                            letterSpacing: "0.05em",
+                          }}
+                        >
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── TECH ECOSYSTEM ────────────────────────────────────────── */
+/* ─── BUILDING EXPERIENCE ────────────────────────────────── */
 
-export function TechEcosystemSection() {
+export function BuildingExperienceSection() {
   const ref = useReveal()
-
-  const tree = [
-    {
-      label: "SOFTWARE",
-      children: [
-        {
-          label: "WEB",
-          items: ["React", "Next.js", "TypeScript", "HTML", "CSS", "Tailwind"],
-        },
-        {
-          label: "AI",
-          items: ["Python", "AI / ML", "Agentic AI", "Automation"],
-        },
-        { label: "QA", items: ["Software Testing", "Manual Testing", "Bug Reporting"] },
-        { label: "3D", items: ["Three.js", "React Three Fiber", "GLTF"] },
-        { label: "SYSTEMS", items: ["Linux", "Git", "SQL", "Firebase", "Networking"] },
-      ],
-    },
-  ]
-
   return (
-    <section ref={ref} id="ecosystem" style={SECTION_STYLE}>
+    <section ref={ref} style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.ARCHITECTURE</SectionLabel>
-        <SectionTitle>TECH ECOSYSTEM</SectionTitle>
+        <SectionLabel>BUILDING EXPERIENCE</SectionLabel>
+        <SectionTitle style={{ fontSize: "clamp(18px, 2.5vw, 32px)" }}>
+          BUILDING EXPERIENCE
+        </SectionTitle>
 
-        <div style={{ marginTop: 48 }}>
-          {tree.map((root) => (
-            <div key={root.label}>
+        <div
+          style={{
+            marginTop: 20,
+            fontFamily: SANS,
+            fontSize: "clamp(10px, 1.1vw, 14px)",
+            color: "#666",
+            lineHeight: 1.8,
+            maxWidth: 700,
+          }}
+        >
+          Currently building practical experience through hands-on projects, technical exploration, and self-directed learning across software development, QA/testing, and AI/automation.
+        </div>
+
+        <div
+          style={{
+            marginTop: 32,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: 12,
+          }}
+        >
+          {[
+            { area: "PROJECT DEVELOPMENT", desc: "Hands-on software projects" },
+            { area: "AI / AUTOMATION", desc: "Exploring AI tools, workflows and agentic systems" },
+            { area: "SOFTWARE TESTING PRACTICE", desc: "Learning test design and QA methods" },
+            { area: "TECHNICAL EXPLORATION", desc: "Experimenting with new technologies and development patterns" },
+            { area: "SYSTEM DESIGN THINKING", desc: "Learning architecture, debugging and engineering tradeoffs" },
+          ].map((item) => (
+            <div
+              key={item.area}
+              style={{
+                border: "1px solid rgba(255,255,255,0.04)",
+                padding: "16px 20px",
+                background: "#0c0c14",
+              }}
+            >
               <div
                 style={{
-                  fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                  fontSize: "clamp(10px, 1vw, 13px)",
-                  color: "#fff",
-                  letterSpacing: "0.1em",
+                  fontFamily: MONO,
+                  fontSize: "clamp(8px, 0.85vw, 10px)",
+                  color: "#4ecdc4",
+                  letterSpacing: "0.15em",
                   textTransform: "uppercase",
-                  padding: "8px 0",
-                  borderBottom: "1px solid #111",
+                  marginBottom: 6,
                 }}
               >
-                {root.label}
+                {item.area}
               </div>
-              {root.children.map((branch, bi) => (
-                <div
-                  key={branch.label}
-                  style={{
-                    marginLeft: "clamp(16px, 2vw, 32px)",
-                    marginTop: 16,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily:
-                        "var(--font-geist-mono), 'Geist Mono', monospace",
-                      fontSize: "clamp(8px, 0.85vw, 10px)",
-                      color: "#4ecdc4",
-                      letterSpacing: "0.2em",
-                      textTransform: "uppercase",
-                      marginBottom: 8,
-                    }}
-                  >
-                    ├── {branch.label}
-                  </div>
-                  <div
-                    style={{
-                      marginLeft: "clamp(16px, 2vw, 32px)",
-                    }}
-                  >
-                    {branch.items.map((item, ii) => (
-                      <div
-                        key={item}
-                        style={{
-                          fontFamily:
-                            "var(--font-geist-mono), 'Geist Mono', monospace",
-                          fontSize: "clamp(9px, 0.9vw, 11px)",
-                          color: "#666",
-                          padding: "3px 0",
-                          letterSpacing: "0.04em",
-                        }}
-                      >
-                        {ii === branch.items.length - 1 ? "└── " : "├── "}
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+              <div
+                style={{
+                  fontFamily: SANS,
+                  fontSize: "clamp(9px, 0.9vw, 11px)",
+                  color: "#555",
+                  lineHeight: 1.5,
+                }}
+              >
+                {item.desc}
+              </div>
             </div>
           ))}
         </div>
@@ -999,271 +1145,82 @@ export function TechEcosystemSection() {
   )
 }
 
-/* ─── ACHIEVEMENTS ──────────────────────────────────────────── */
-
-export function AchievementsSection() {
-  const ref = useReveal()
-  return (
-    <section ref={ref} id="achievements" style={SECTION_STYLE}>
-      <div style={INNER_STYLE}>
-        <SectionLabel>SYSTEM.RECORDS</SectionLabel>
-        <SectionTitle>ACHIEVEMENTS</SectionTitle>
-
-        <div
-          style={{
-            marginTop: 48,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(10px, 1vw, 13px)",
-            color: "#666",
-            lineHeight: 1.8,
-            letterSpacing: "0.03em",
-            marginBottom: 32,
-          }}
-        >
-          Verified project completions and learning milestones.
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 16,
-          }}
-        >
-          {sampleProjects
-            .filter(
-              (p) =>
-                p.status === "deployed" ||
-                p.status === "completed" ||
-                p.progress >= 80
-            )
-            .map((project) => (
-              <div
-                key={project.id}
-                style={{
-                  border: "1px solid #111",
-                  padding: "16px 20px",
-                  background: "#08080c",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily:
-                      "var(--font-geist-mono), 'Geist Mono', monospace",
-                    fontSize: "clamp(9px, 0.9vw, 11px)",
-                    color: "#fff",
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {project.name}
-                </div>
-                <div
-                  style={{
-                    fontFamily:
-                      "var(--font-geist-mono), 'Geist Mono', monospace",
-                    fontSize: "clamp(8px, 0.8vw, 10px)",
-                    color: "#4ecdc4",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    marginTop: 4,
-                  }}
-                >
-                  {project.status.toUpperCase()} — {project.progress}%
-                </div>
-                <div
-                  style={{
-                    fontFamily:
-                      "var(--font-geist-mono), 'Geist Mono', monospace",
-                    fontSize: "clamp(8px, 0.8vw, 10px)",
-                    color: "#555",
-                    marginTop: 8,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {project.category}
-                </div>
-              </div>
-            ))}
-
-          <div
-            style={{
-              border: "1px solid #111",
-              padding: "16px 20px",
-              background: "#08080c",
-            }}
-          >
-            <div
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(9px, 0.9vw, 11px)",
-                color: "#fff",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-              }}
-            >
-              BCA DEGREE
-            </div>
-            <div
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(8px, 0.8vw, 10px)",
-                color: "#4ecdc4",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                marginTop: 4,
-              }}
-            >
-              COMPLETED
-            </div>
-            <div
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(8px, 0.8vw, 10px)",
-                color: "#555",
-                marginTop: 8,
-                lineHeight: 1.6,
-              }}
-            >
-              {educationData.institution}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── CONTACT ───────────────────────────────────────────────── */
+/* ─── CONTACT ────────────────────────────────────────────── */
 
 export function ContactSection() {
   const ref = useReveal()
   return (
     <section ref={ref} id="contact" style={SECTION_STYLE}>
       <div style={INNER_STYLE}>
-        <SectionLabel>OPEN_CHANNEL</SectionLabel>
-        <SectionTitle>CONTACT</SectionTitle>
+        <ModuleLabel number="06" title="COMMUNICATION" />
+        <SectionLabel>06 — CONTACT</SectionLabel>
+        <SectionTitle>GET IN TOUCH</SectionTitle>
 
         <div
           style={{
-            marginTop: 48,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(10px, 1vw, 13px)",
-            color: "#666",
+            marginTop: 20,
+            fontFamily: SANS,
+            fontSize: "clamp(11px, 1.2vw, 15px)",
+            color: "#999",
             lineHeight: 1.8,
-            letterSpacing: "0.03em",
-            marginBottom: 32,
+            marginBottom: 40,
+            maxWidth: 700,
           }}
         >
-          Open to internships, collaboration, and interesting conversations.
+          Open to internships, software development opportunities, QA/testing
+          roles, AI/automation projects and technical collaborations.
         </div>
 
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 16,
+            gap: 0,
           }}
         >
-          {profileData.social.github && (
+          {[
+            { label: "GITHUB", href: profileData.social.github, external: true },
+            { label: "LINKEDIN", href: profileData.social.linkedin, external: true },
+            { label: "INSTAGRAM", href: profileData.social.instagram, external: true },
+            { label: "EMAIL", href: `mailto:${profileData.social.email}`, external: false },
+            { label: "PHONE", href: `tel:+91${profileData.social.phone}`, external: false },
+          ].filter((l) => l.href).map((link) => (
             <a
-              href={profileData.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
+              key={link.label}
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
               style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+                fontFamily: MONO,
                 fontSize: "clamp(10px, 1vw, 13px)",
                 color: "#4ecdc4",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                padding: "12px 0",
-                borderBottom: "1px solid #111",
+                padding: "14px 0",
+                borderBottom: "1px solid rgba(255,255,255,0.04)",
                 display: "block",
-                transition: "color 0.3s ease",
+                textDecoration: "none",
+                transition: "color 0.3s ease, padding-left 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.paddingLeft = "8px"
+                e.currentTarget.style.color = "#6ff5ec"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.paddingLeft = "0"
+                e.currentTarget.style.color = "#4ecdc4"
               }}
             >
-              GITHUB →
+              {link.label} →
             </a>
-          )}
-          {profileData.social.linkedin && (
-            <a
-              href={profileData.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(10px, 1vw, 13px)",
-                color: "#4ecdc4",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                padding: "12px 0",
-                borderBottom: "1px solid #111",
-                display: "block",
-                transition: "color 0.3s ease",
-              }}
-            >
-              LINKEDIN →
-            </a>
-          )}
-          {profileData.social.instagram && (
-            <a
-              href={profileData.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-                fontSize: "clamp(10px, 1vw, 13px)",
-                color: "#4ecdc4",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                padding: "12px 0",
-                borderBottom: "1px solid #111",
-                display: "block",
-                transition: "color 0.3s ease",
-              }}
-            >
-              INSTAGRAM →
-            </a>
-          )}
-          <a
-            href={`mailto:${profileData.social.email}`}
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(10px, 1vw, 13px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              padding: "12px 0",
-              borderBottom: "1px solid #111",
-              display: "block",
-              transition: "color 0.3s ease",
-            }}
-          >
-            EMAIL →
-          </a>
-          <a
-            href={`tel:+91${profileData.social.phone}`}
-            style={{
-              fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-              fontSize: "clamp(10px, 1vw, 13px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              padding: "12px 0",
-              borderBottom: "1px solid #111",
-              display: "block",
-              transition: "color 0.3s ease",
-            }}
-          >
-            PHONE →
-          </a>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-/* ─── FINAL ─────────────────────────────────────────────────── */
+/* ─── FINAL ──────────────────────────────────────────────── */
 
 export function FinalSection() {
   const ref = useReveal()
@@ -1292,42 +1249,128 @@ export function FinalSection() {
         />
         <div
           style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
+            fontFamily: MONO,
             fontSize: "clamp(14px, 2vw, 24px)",
             color: "#fff",
             letterSpacing: "0.3em",
             textTransform: "uppercase",
           }}
         >
-          SKANDA.EXE
+          LET&apos;S BUILD SOMETHING USEFUL.
         </div>
+
+        {/* OPEN TO tags */}
         <div
           style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(8px, 0.9vw, 10px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            marginTop: 12,
+            marginTop: 24,
+            display: "flex",
+            gap: 10,
+            justifyContent: "center",
+            flexWrap: "wrap",
           }}
         >
-          SYSTEM ONLINE
+          {[
+            "Software Development Internships",
+            "QA / Testing Internships",
+            "AI / Automation Opportunities",
+          ].map((item) => (
+            <span
+              key={item}
+              style={{
+                fontFamily: MONO,
+                fontSize: "clamp(7px, 0.7vw, 9px)",
+                color: "#666",
+                padding: "4px 12px",
+                border: "1px solid rgba(255,255,255,0.06)",
+                letterSpacing: "0.05em",
+              }}
+            >
+              {item}
+            </span>
+          ))}
         </div>
+
         <div
           style={{
-            marginTop: 48,
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(9px, 1vw, 12px)",
-            color: "#444",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            lineHeight: 2.2,
+            marginTop: 40,
+            display: "flex",
+            gap: 16,
+            justifyContent: "center",
+            flexWrap: "wrap",
           }}
         >
-          <div>BUILD.</div>
-          <div>EXPLORE.</div>
-          <div>EXPERIMENT.</div>
+          <a
+            href={profileData.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(8px, 0.8vw, 10px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: "1px solid rgba(78,205,196,0.2)",
+              padding: "8px 20px",
+              textDecoration: "none",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            GITHUB
+          </a>
+          <a
+            href={profileData.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(8px, 0.8vw, 10px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: "1px solid rgba(78,205,196,0.2)",
+              padding: "8px 20px",
+              textDecoration: "none",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            LINKEDIN
+          </a>
+          <a
+            href={profileData.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(8px, 0.8vw, 10px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: "1px solid rgba(78,205,196,0.2)",
+              padding: "8px 20px",
+              textDecoration: "none",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            INSTAGRAM
+          </a>
+          <a
+            href={`mailto:${profileData.social.email}`}
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(8px, 0.8vw, 10px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              border: "1px solid rgba(78,205,196,0.2)",
+              padding: "8px 20px",
+              textDecoration: "none",
+              transition: "border-color 0.3s ease",
+            }}
+          >
+            EMAIL
+          </a>
         </div>
+
         <div
           style={{
             width: 1,

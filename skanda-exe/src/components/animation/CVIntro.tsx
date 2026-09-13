@@ -4,20 +4,20 @@ import { useEffect, useRef } from "react"
 
 export default function CVTitleSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const section = sectionRef.current
-    const title = titleRef.current
-    if (!section || !title) return
+    const content = contentRef.current
+    if (!section || !content) return
 
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches
 
     if (prefersReduced) {
-      title.style.opacity = "1"
-      title.style.transform = "translateY(0)"
+      content.style.opacity = "1"
+      content.style.transform = "translateY(0)"
       return
     }
 
@@ -29,8 +29,8 @@ export default function CVTitleSection() {
 
       const progress = Math.max(0, Math.min(1, -rect.top / scrollable))
 
-      title.style.opacity = String(1 - progress * 1.5)
-      title.style.transform = `translateY(${-progress * 40}px)`
+      content.style.opacity = String(1 - progress * 1.5)
+      content.style.transform = `translateY(${-progress * 40}px)`
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -38,13 +38,16 @@ export default function CVTitleSection() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const MONO = "var(--font-geist-mono), 'Geist Mono', monospace"
+  const SANS = "var(--font-geist-sans), 'Geist', sans-serif"
+
   return (
     <div
       ref={sectionRef}
       style={{
         height: "100vh",
         position: "relative",
-        background: "#000",
+        background: "#07070b",
       }}
     >
       <div
@@ -56,26 +59,120 @@ export default function CVTitleSection() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#000",
+          background: "#07070b",
           zIndex: 2,
         }}
       >
         <div
-          ref={titleRef}
+          ref={contentRef}
           style={{
-            fontFamily: "var(--font-geist-mono), 'Geist Mono', monospace",
-            fontSize: "clamp(28px, 5vw, 64px)",
-            color: "#e8e8e8",
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            fontWeight: 300,
             textAlign: "center",
             opacity: 1,
             transform: "translateY(0)",
             transition: "opacity 0.1s linear, transform 0.1s linear",
+            padding: "0 clamp(24px, 6vw, 80px)",
           }}
         >
-          SKANDA C.V.
+          {/* Name */}
+          <div
+            style={{
+              fontFamily: SANS,
+              fontSize: "clamp(32px, 6vw, 72px)",
+              color: "#e8e8e8",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+              lineHeight: 1.05,
+            }}
+          >
+            SKANDA
+          </div>
+          <div
+            style={{
+              fontFamily: SANS,
+              fontSize: "clamp(32px, 6vw, 72px)",
+              color: "#e8e8e8",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              fontWeight: 300,
+              lineHeight: 1.05,
+            }}
+          >
+            CHANDRASHEKHAR
+          </div>
+
+          {/* Positioning */}
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(8px, 0.9vw, 11px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginTop: 24,
+            }}
+          >
+            BCA STUDENT · SOFTWARE DEVELOPER · QA / AI AUTOMATION
+          </div>
+
+          {/* Statement */}
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(9px, 1vw, 12px)",
+              color: "#9a9aac",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              marginTop: 20,
+              lineHeight: 2,
+            }}
+          >
+            <div>BUILDING SOFTWARE.</div>
+            <div>TESTING SYSTEMS.</div>
+            <div>EXPLORING AI.</div>
+          </div>
+
+          {/* Location */}
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#6b6b80",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginTop: 24,
+            }}
+          >
+            BANGALORE, INDIA
+          </div>
+
+          {/* Open to */}
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#4ecdc4",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginTop: 12,
+            }}
+          >
+            OPEN TO INTERNSHIPS
+          </div>
+
+          {/* Scroll prompt */}
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: "clamp(7px, 0.7vw, 9px)",
+              color: "#444",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              marginTop: 48,
+            }}
+          >
+            SCROLL TO EXPLORE ↓
+          </div>
         </div>
       </div>
     </div>

@@ -8,8 +8,10 @@ const FRAME_PATH = (i: number) =>
 
 export default function ScrollFrameSequence({
   onReady,
+  thresholdHeight = 0,
 }: {
   onReady?: () => void
+  thresholdHeight?: number
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -21,6 +23,7 @@ export default function ScrollFrameSequence({
   const [loading, setLoading] = useState(true)
   const [loadProgress, setLoadProgress] = useState(0)
   const prefersReducedMotion = useRef(false)
+  const thresholdRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     prefersReducedMotion.current = window.matchMedia(
@@ -151,19 +154,27 @@ export default function ScrollFrameSequence({
       const scrollHeight = el.offsetHeight - window.innerHeight
       if (scrollHeight <= 0) return
       const progress = Math.max(0, Math.min(1, -rect.top / scrollHeight))
-      targetFrameRef.current = progress * (TOTAL_FRAMES - 1)
+      const frameZone = scrollHeight - thresholdHeight
+      if (frameZone > 0) {
+        targetFrameRef.current = Math.min(1, progress * scrollHeight / frameZone) * (TOTAL_FRAMES - 1)
+      } else {
+        targetFrameRef.current = progress * (TOTAL_FRAMES - 1)
+      }
+      if (thresholdRef.current && thresholdHeight > 0 && frameZone > 0) {
+        const thresholdProgress = Math.max(0, Math.min(1, (progress * scrollHeight - frameZone) / thresholdHeight))
+        thresholdRef.current.style.opacity = prefersReducedMotion.current ? "1" : String(thresholdProgress)
+      }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [thresholdHeight])
 
-  const frame = Math.round(targetFrameRef.current)
-  const progress = TOTAL_FRAMES > 1 ? frame / (TOTAL_FRAMES - 1) : 0
+  const totalHeight = `calc(500vh + ${thresholdHeight}px)`
 
   return (
-    <div ref={containerRef} style={{ height: "500vh", position: "relative", zIndex: 1 }}>
+    <div ref={containerRef} style={{ height: totalHeight, position: "relative", zIndex: 1 }}>
       <div
         style={{
           position: "sticky",
@@ -184,6 +195,46 @@ export default function ScrollFrameSequence({
           }}
         />
 
+        {/* Cinematic threshold overlay */}
+        {thresholdHeight > 0 && (
+          <div
+            ref={thresholdRef}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "#07070b",
+              opacity: 0,
+              pointerEvents: "none",
+              zIndex: 5,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 16,
+            }}
+          >
+            <div
+              style={{
+                width: 1,
+                height: 40,
+                background: "linear-gradient(to bottom, transparent, rgba(78,205,196,0.4), transparent)",
+              }}
+            />
+            <div
+              style={{
+                fontFamily: "'Geist Mono', monospace",
+                fontSize: "clamp(8px, 0.85vw, 10px)",
+                color: "#4ecdc4",
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                opacity: 0.6,
+              }}
+            >
+              ACCESSING PROFILE
+            </div>
+          </div>
+        )}
+
         {loading && (
           <div
             style={{
@@ -200,18 +251,6 @@ export default function ScrollFrameSequence({
               pointerEvents: loading ? "auto" : "none",
             }}
           >
-            <div
-              style={{
-                fontFamily: "'Geist Mono', monospace",
-                fontSize: "clamp(14px, 2vw, 20px)",
-                color: "#fff",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                marginBottom: 24,
-              }}
-            >
-              SKANDA.EXE
-            </div>
             <div
               style={{
                 fontFamily: "'Geist Mono', monospace",
@@ -247,145 +286,6 @@ export default function ScrollFrameSequence({
             </div>
           </div>
         )}
-
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            padding: "clamp(20px, 4vw, 48px)",
-            zIndex: 5,
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(12px, 1.6vw, 16px)",
-              color: "#fff",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: progress < 0.05 ? 1 : 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            SKANDA.EXE
-          </div>
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(9px, 1.1vw, 11px)",
-              color: "#555",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              marginTop: 6,
-              opacity: progress < 0.05 ? 1 : 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            SYSTEM OFF
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            padding: "clamp(20px, 4vw, 48px)",
-            zIndex: 5,
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(12px, 1.6vw, 16px)",
-              color: "#fff",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: progress > 0.95 ? 1 : 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            SKANDA.EXE
-          </div>
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(9px, 1.1vw, 11px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              marginTop: 6,
-              opacity: progress > 0.95 ? 1 : 0,
-              transition: "opacity 0.4s ease",
-            }}
-          >
-            SYSTEM ONLINE
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            bottom: "clamp(20px, 4vw, 48px)",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zIndex: 5,
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(8px, 1vw, 10px)",
-              color: "#555",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: progress < 0.08 ? 1 : 0,
-              transition: "opacity 0.6s ease",
-            }}
-          >
-            SCROLL TO INITIALIZE
-          </div>
-          <div
-            style={{
-              width: 1,
-              height: 24,
-              background: "#333",
-              margin: "12px auto 0",
-              opacity: progress < 0.08 ? 0.5 : 0,
-              transition: "opacity 0.6s ease",
-            }}
-          />
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            bottom: "clamp(20px, 4vw, 48px)",
-            right: "clamp(20px, 4vw, 48px)",
-            zIndex: 5,
-            pointerEvents: "none",
-            textAlign: "right",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: "'Geist Mono', monospace",
-              fontSize: "clamp(8px, 0.9vw, 10px)",
-              color: "#333",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            {String(frame).padStart(4, "0")} / {TOTAL_FRAMES - 1}
-          </div>
-        </div>
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ export interface Project {
   technologies: string[]
   features: string[]
   progress: number
-  status: "idea" | "planning" | "in-progress" | "testing" | "deployed" | "completed" | "archived"
+  status: "idea" | "planning" | "in-progress" | "testing" | "deployed" | "completed" | "archived" | "project" | "academic-project" | "personal-project" | "experiment"
   github: string
   demo: string
   startDate: string
@@ -36,8 +36,10 @@ export interface Education {
   id: string
   institution: string
   degree: string
-  startYear: number
-  endYear: number
+  startDate: string
+  endDate: string
+  status: string
+  location: string
   description: string
   coursework: string[]
 }

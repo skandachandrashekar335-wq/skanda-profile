@@ -1,0 +1,6 @@
+.next
+node_modules
+.vercel
+*.log
+public/assets/computer/computer.glb
+dev-output.log

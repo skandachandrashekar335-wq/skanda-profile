@@ -4,3 +4,9 @@ node_modules
 *.log
 public/assets/computer/computer.glb
 dev-output.log
+.env*
+.git
+.DS_Store
+*.tsbuildinfo
+.opencode
+Run

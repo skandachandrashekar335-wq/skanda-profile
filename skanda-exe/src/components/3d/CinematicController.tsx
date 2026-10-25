@@ -1,4 +1,5 @@
 "use client"
+/* eslint-disable react-hooks/immutability */
 
 import { useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"

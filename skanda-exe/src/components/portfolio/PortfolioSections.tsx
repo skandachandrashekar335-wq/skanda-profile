@@ -47,7 +47,7 @@ function useReveal(threshold = 0.15) {
   return ref
 }
 
-function ModuleLabel({ number, title }: { number: string; title: string }) {
+function ModuleLabel({ number }: { number: string; title?: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
       <span
@@ -348,155 +348,126 @@ function ProjectModule({
   const [hovered, setHovered] = useState(false)
 
   const statusLabel =
-    project.status === "in-progress" ? "CURRENT BUILD" :
+    project.statusLabel ??
+    (project.status === "in-progress" ? "CURRENT BUILD" :
     project.status === "deployed" ? "DEPLOYED" :
     project.status === "completed" ? "COMPLETED" :
     project.status === "academic-project" ? "ACADEMIC PROJECT" :
     project.status === "personal-project" ? "PERSONAL PROJECT" :
     project.status === "experiment" ? "EXPERIMENT" :
     project.status === "project" ? "PROJECT" :
-    project.status.toUpperCase()
+    project.status.toUpperCase())
 
-  const statusColor =
-    project.status === "deployed" || project.status === "completed"
-      ? "#4ecdc4"
-      : project.status === "in-progress"
-      ? "#c4a74e"
-      : "#888"
+  const projectLinks = [
+    project.github
+      ? {
+          label: "SOURCE",
+          href: project.github,
+          ariaLabel: `View ${project.name} source on GitHub`,
+          primary: true,
+        }
+      : null,
+    project.demo
+      ? {
+          label: "LIVE DEMO",
+          href: project.demo,
+          ariaLabel: `Open the ${project.name} live demo`,
+          primary: false,
+        }
+      : null,
+    project.release
+      ? {
+          label: "RELEASES",
+          href: project.release,
+          ariaLabel: `View ${project.name} releases`,
+          primary: false,
+        }
+      : null,
+  ].filter(
+    (
+      link,
+    ): link is {
+      label: string
+      href: string
+      ariaLabel: string
+      primary: boolean
+    } => Boolean(link),
+  )
 
   return (
-    <div
+    <article
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        border: `1px solid ${hovered ? "rgba(78,205,196,0.15)" : "rgba(255,255,255,0.04)"}`,
-        padding: "clamp(24px, 3vw, 40px)",
-        marginBottom: 24,
-        background: hovered ? "#12121b" : "#0c0c14",
-        transition: "all 0.3s ease",
-        transform: hovered ? "translateY(-2px)" : "translateY(0)",
-      }}
+      className={`project-card${index === 0 ? " project-card-featured" : ""}${hovered ? " is-hovered" : ""}`}
+      aria-labelledby={`project-${project.id}-title`}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#333",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            PROJECT_{String(index + 1).padStart(2, "0")}
+      <div className="project-card-header">
+        <div className="project-card-identity">
+          <div className="project-card-kicker">
+            <span>PROJECT_{String(index + 1).padStart(2, "0")}</span>
+            <span className="project-card-category">{project.category}</span>
           </div>
-
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: "clamp(16px, 2vw, 28px)",
-              color: "#fff",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              fontWeight: 300,
-            }}
-          >
+          <h3 id={`project-${project.id}-title`} className="project-card-title">
             {project.name}
+          </h3>
+        </div>
+        <StatusBadge
+          label={statusLabel}
+          variant={project.status === "deployed" || project.status === "completed" ? "active" : "default"}
+        />
+      </div>
+
+      <div className="project-card-body">
+        <div className="project-card-problem">
+          <span className="project-card-label">THE PROBLEM</span>
+          <p>{project.shortDescription}</p>
+        </div>
+
+        <p className="project-card-description">{project.description}</p>
+
+        <div className="project-card-details">
+          <div className="project-card-capabilities">
+            <div className="project-card-label">KEY CAPABILITIES</div>
+            <ul>
+              {project.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
           </div>
-        </div>
 
-        <StatusBadge label={statusLabel} variant={project.status === "deployed" || project.status === "completed" ? "active" : "default"} />
-      </div>
-
-      {/* Value proposition */}
-      <div
-        style={{
-          fontFamily: SANS,
-          fontSize: "clamp(11px, 1.2vw, 15px)",
-          color: "#999",
-          lineHeight: 1.7,
-          marginTop: 16,
-          maxWidth: 700,
-        }}
-      >
-        {project.description}
-      </div>
-
-      {/* Tech stack */}
-      <div style={{ marginTop: 20 }}>
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: "clamp(7px, 0.7vw, 9px)",
-            color: "#4ecdc4",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            marginBottom: 8,
-          }}
-        >
-          STACK
-        </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {project.technologies.map((t) => (
-            <span
-              key={t}
-              style={{
-                fontFamily: MONO,
-                fontSize: "clamp(8px, 0.8vw, 10px)",
-                color: "#888",
-                padding: "4px 10px",
-                border: "1px solid rgba(255,255,255,0.06)",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Key features */}
-      {project.features.length > 0 && (
-        <div style={{ marginTop: 16 }}>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: "clamp(7px, 0.7vw, 9px)",
-              color: "#4ecdc4",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: 8,
-            }}
-          >
-            KEY CAPABILITIES
-          </div>
-          {project.features.map((f) => (
-            <div
-              key={f}
-              style={{
-                fontFamily: MONO,
-                fontSize: "clamp(9px, 0.9vw, 11px)",
-                color: "#666",
-                padding: "3px 0",
-                letterSpacing: "0.03em",
-              }}
-            >
-              — {f}
+          <div className="project-card-stack">
+            <div className="project-card-label">STACK</div>
+            <div className="project-stack-list">
+              {project.technologies.map((technology) => (
+                <span key={technology}>{technology}</span>
+              ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="project-card-footer">
+        <div className="project-card-proof">
+          <span className="project-proof-dot" aria-hidden="true" />
+          <span>REPOSITORY VERIFIED</span>
+        </div>
+        <div className="project-actions" role="group" aria-label={`${project.name} project links`}>
+          {projectLinks.map((link) => (
+            <a
+              key={link.label}
+              className={`project-action${link.primary ? " project-action-primary" : ""}`}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.ariaLabel}
+            >
+              {link.label} <span aria-hidden="true">↗</span>
+            </a>
           ))}
         </div>
-      )}
-    </div>
+      </div>
+    </article>
   )
 }
 
@@ -505,25 +476,29 @@ export function ProjectsSection() {
 
   return (
     <section ref={ref} id="projects" style={SECTION_STYLE}>
-      <div style={INNER_STYLE}>
+      <div style={{ ...INNER_STYLE, maxWidth: 1180 }}>
         <ModuleLabel number="02" title="PROJECT ENGINE" />
-        <SectionLabel>02 — PROJECTS</SectionLabel>
-        <SectionTitle>SELECTED PROJECTS</SectionTitle>
-
-        <div
-          style={{
-            marginTop: 12,
-            fontFamily: MONO,
-            fontSize: "clamp(9px, 0.9vw, 11px)",
-            color: "#555",
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-          }}
-        >
-          PERSONAL & ACADEMIC
+        <div className="projects-heading-row">
+          <div>
+            <SectionLabel>02 — PROJECTS</SectionLabel>
+            <SectionTitle>PROJECT ENGINE</SectionTitle>
+            <p className="projects-intro">
+              Five focused builds across secure examination operations, offline systems, browser privacy, peer-to-peer communication, and explainable NLP.
+            </p>
+          </div>
+          <div className="projects-summary" aria-label="Project collection summary">
+            <div>
+              <strong>05</strong>
+              <span>BUILDS IN VIEW</span>
+            </div>
+            <div>
+              <strong>04</strong>
+              <span>DOMAINS</span>
+            </div>
+          </div>
         </div>
 
-        <div style={{ marginTop: 48 }}>
+        <div className="projects-grid">
           {sampleProjects.map((project, i) => (
             <ProjectModule key={project.id} project={project} index={i} />
           ))}

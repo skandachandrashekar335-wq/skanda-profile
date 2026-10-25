@@ -76,7 +76,7 @@ export default function ScrollFrameSequence({
     lastDrawnRef.current = frameIndex
   }, [])
 
-  const renderLoop = useCallback(() => {
+  const renderLoop = useCallback(function loop() {
     if (prefersReducedMotion.current) {
       drawFrame(0)
       return
@@ -95,7 +95,7 @@ export default function ScrollFrameSequence({
       drawFrame(currentFrameRef.current)
     }
 
-    rafRef.current = requestAnimationFrame(renderLoop)
+    rafRef.current = requestAnimationFrame(loop)
   }, [drawFrame])
 
   useEffect(() => {

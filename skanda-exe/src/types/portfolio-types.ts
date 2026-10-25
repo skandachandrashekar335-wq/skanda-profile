@@ -9,8 +9,10 @@ export interface Project {
   features: string[]
   progress: number
   status: "idea" | "planning" | "in-progress" | "testing" | "deployed" | "completed" | "archived" | "project" | "academic-project" | "personal-project" | "experiment"
+  statusLabel?: string
   github: string
   demo: string
+  release?: string
   startDate: string
   lastUpdated: string
   milestones: Milestone[]

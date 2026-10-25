@@ -9,7 +9,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 
 **Production Website:** [https://skandachandrashekar.vercel.app/](https://skandachandrashekar.vercel.app/)  
-**GitHub Repository:** [https://github.com/skandachandrashekar335-wq/skanda-profile](https://github.com/skandachandrashekar335-wq/skanda-profile)
+
 
 ---
 

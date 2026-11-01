@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-01T15:58:33.083Z",
-  "profileVersion": "2026-11-01T15:58:33.083Z",
+  "updatedAt": "2026-11-01T16:01:43.645Z",
+  "profileVersion": "2026-11-01T16:01:43.645Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-01T15:58:32.544Z"
+        "checkedAt": "2026-11-01T16:01:42.135Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-01T15:58:32.705Z"
+        "checkedAt": "2026-11-01T16:01:42.479Z"
       },
       "stars": 0,
       "private": false
@@ -264,7 +264,7 @@
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-01T15:58:32.910Z"
+        "checkedAt": "2026-11-01T16:01:43.439Z"
       },
       "stars": 1,
       "private": false
@@ -366,7 +366,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-01T15:58:33.083Z"
+        "checkedAt": "2026-11-01T16:01:43.645Z"
       },
       "stars": 0,
       "private": false

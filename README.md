@@ -34,15 +34,18 @@ This portfolio presents the work, engineering principles, and technical capabili
 
 ## Selected Work
 
-The portfolio highlights five featured projects with deep-dive case studies at `/work/[slug]`:
+The portfolio showcases verified engineering projects with deep-dive case studies at `/work/[slug]`:
 
 | # | Project | Category | Key Technologies | Status |
 |---|---------|----------|------------------|--------|
-| **01** | **[ExamGuard](/work/examguard)** | AI & Security | Next.js, Python, FastAPI, UniFace, OpenCV, Cloudinary, PostgreSQL | MVP in Progress |
-| **02** | **[SubstiFlow](/work/substiflow)** | Systems | Electron, React, TypeScript, SQLite, Vite, Vitest | Completed |
-| **03** | **[Anomoly Chat](/work/anomoly-chat)** | WebRTC & Privacy | JavaScript, WebRTC, PeerJS, Web Crypto API | Live Demo |
-| **04** | **[What's Not Up](/work/whats-not-up)** | Browser Security | TypeScript, React, Manifest V3, Webpack, Vitest | Released Extension |
-| **05** | **[DSCASC AI](/work/dscasc-ai)** | Explainable NLP | Next.js, React, TypeScript, TF-IDF, Cosine Similarity | Academic MVP |
+| **01** | **[SubstiFlow](/work/substiflow)** | Systems | Electron, React, TypeScript, SQLite, Vite, Vitest | Local-First Build |
+| **02** | **[DSCASC AI](/work/dscasc-ai)** | Explainable NLP | Next.js, React, TypeScript, TF-IDF, Cosine Similarity | Academic MVP |
+| **03** | **[Noctra](/work/noctra)** | Tools | Next.js, TypeScript, Tailwind CSS, PDF.js, Canvas API | Live Utility |
+| **04** | **[WAVEIL](/work/waveil)** | Browser Security | TypeScript, React, Manifest V3, Webpack, Vitest | Released Extension |
+| **05** | **[SUTRA](/work/sutra)** | AI & Education | Next.js, TypeScript, Python, FastAPI, Vector Clustering | Classroom Q&A |
+| **06** | **[ReleaseLens](/work/releaselens)** | QA & Testing | TypeScript, Jest, Playwright, Lighthouse, Node.js | Quality Platform |
+| **07** | **[ExamGuard](/work/examguard)** | AI & Security | Next.js, Python, FastAPI, UniFace, OpenCV, PostgreSQL | MVP in Progress |
+| **08** | **[Anomoly Chat](/work/anomoly-chat)** | WebRTC & Privacy | JavaScript, WebRTC, PeerJS, Web Crypto API | Live Demo |
 
 Each case study details:
 - **The Core Problem:** Real-world domain context and challenges.

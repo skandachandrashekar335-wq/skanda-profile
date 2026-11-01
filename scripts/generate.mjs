@@ -12,21 +12,26 @@ const TOKEN = process.env.GH_READ_TOKEN || process.env.GITHUB_TOKEN;
 
 // Approved curated project order
 export const FEATURED_SLUGS = [
-  'examguard',
   'substiflow',
-  'anomoly-chat',
-  'whats-not-up',
   'dscasc-ai',
+  'noctra',
+  'waveil',
+  'sutra',
+  'releaselens',
+  'examguard',
+  'anomoly-chat',
 ];
 
 // Map repo names from GitHub to canonical slugs
 export function normalizeSlug(repoName) {
   const map = {
-    'ExamGuard': 'examguard',
     'SUBSTIFLOW': 'substiflow',
-    'anomoly-chat': 'anomoly-chat',
-    'What-s-Not-Up': 'whats-not-up',
     'dscasc-ai': 'dscasc-ai',
+    'Noctra-pdfconverter': 'noctra',
+    'What-s-Not-Up': 'waveil',
+    'ExamGuard': 'examguard',
+    'ReleaseLens': 'releaselens',
+    'anomoly-chat': 'anomoly-chat',
   };
   return map[repoName] || repoName;
 }

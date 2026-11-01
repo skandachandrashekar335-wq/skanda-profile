@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-01T20:50:00.000Z",
-  "profileVersion": "2026-11-01T20:50:00Z",
+  "updatedAt": "2026-11-01T21:05:00.000Z",
+  "profileVersion": "2026-11-01T21:05:00Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -8,15 +8,15 @@
     "education": "BCA, Dayananda Sagar College of Arts, Science & Commerce, Bengaluru",
     "now": [
       {
-        "title": "ExamGuard",
-        "body": "Developing an end-to-end examination verification platform integrating Next.js, Python FastAPI, biometric liveness checks, and tamper-resistant audit logs."
-      },
-      {
         "title": "SubstiFlow",
-        "body": "Maintaining automated faculty substitution scheduling with React, TypeScript, SQLite, and deterministic constraint algorithms."
+        "body": "Developing local-first faculty substitution scheduling and automated timetable generation with React, TypeScript, and SQLite."
       },
       {
-        "title": "QA & Testing Discipline",
+        "title": "DSCASC AI",
+        "body": "Maintaining student guidance assistance with deterministic TF-IDF vector ranking, typo resilience, and confidence thresholds."
+      },
+      {
+        "title": "QA & Automation",
         "body": "Designing comprehensive test suites with unit assertions, mock pipelines, and property-based verification for resilient software delivery."
       }
     ],
@@ -29,8 +29,8 @@
       "FastAPI",
       "Node.js",
       "PostgreSQL",
-      "Prisma",
       "SQLite",
+      "Prisma",
       "Electron",
       "Tailwind CSS",
       "Jest",
@@ -42,8 +42,7 @@
       "UniFace",
       "Docker",
       "Git",
-      "Cloudinary",
-      "Firebase"
+      "Cloudinary"
     ],
     "availability": "Open to software development, QA/testing, and AI/automation internships.",
     "email": "skandachandrashekar335@gmail.com",
@@ -52,6 +51,243 @@
     "github": "https://github.com/skandachandrashekar335-wq"
   },
   "projects": [
+    {
+      "slug": "substiflow",
+      "title": "SubstiFlow",
+      "tagline": "Timetable and faculty substitution automation",
+      "category": "Systems",
+      "summary": "Replaces spreadsheet-driven substitution chaos with a local desktop workflow: draft timetables, validate hard constraints, review deterministic substitute recommendations, and issue revised schedules without mutating master records.",
+      "problem": "Department coordinators face chaotic morning scrambles when faculty call in sick. Manual timetable spreadsheets cause classroom double-bookings, teaching workload violations, and untracked substitution histories.",
+      "howItWorks": [
+        "Electron desktop app with React and TypeScript provides a fast, offline-capable coordinator interface.",
+        "Deterministic constraint-satisfaction engine evaluates schedule availability, subject qualifications, and teaching hour caps.",
+        "Transactional SQLite database records substitutions as deltas against the immutable master schedule.",
+        "Atomic export pipeline generates formatted daily substitution slips and PDF schedules."
+      ],
+      "highlights": [
+        "Local-first architecture ensures coordinators can resolve emergency substitutions without internet access.",
+        "Comprehensive property-based tests in Vitest validating constraint solver edge cases and cyclical conflicts.",
+        "Transactional SQLite rollback verification ensuring schedule mutations are never half-applied.",
+        "Immutable schedule locking once coordinator approval is granted."
+      ],
+      "stack": [
+        "Electron",
+        "React",
+        "TypeScript",
+        "SQLite",
+        "Vite",
+        "Vitest",
+        "Tailwind CSS"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 87.7 },
+        { "name": "JavaScript", "pct": 12.0 },
+        { "name": "CSS", "pct": 0.2 },
+        { "name": "HTML", "pct": 0.1 }
+      ],
+      "createdAt": "2026-09-24T18:00:48Z",
+      "pushedAt": "2026-10-24T12:33:13Z",
+      "url": "https://github.com/skandachandrashekar335-wq/SUBSTIFLOW",
+      "homepage": null,
+      "live": null,
+      "stars": 1,
+      "private": false
+    },
+    {
+      "slug": "dscasc-ai",
+      "title": "DSCASC AI",
+      "tagline": "Student guidance and NLP-based assistance for campus services",
+      "category": "Explainable NLP",
+      "summary": "An academic guidance assistant built around an explainable NLP pipeline: normalizes student queries, builds TF-IDF vector models, ranks with cosine similarity, and falls back gracefully below confidence thresholds.",
+      "problem": "College students and prospective applicants frequently struggle to locate official guidance on admissions, fees, syllabus, and placement schedules across dispersed circulars and PDF notices.",
+      "howItWorks": [
+        "Text preprocessing pipeline normalizes college jargon, course abbreviations (BCA, MCA, MBA), and common student typos.",
+        "Vector engine generates TF-IDF representations from curated institutional knowledge bases.",
+        "Cosine similarity rankings identify the closest official responses with inspectable confidence scores.",
+        "Queries falling below a 0.45 similarity threshold gracefully trigger structured contact cards rather than guessing answers."
+      ],
+      "highlights": [
+        "Deterministic explainability: Vector scores and similarity rankings are fully inspectable, eliminating LLM hallucinations.",
+        "Zero recurring inference costs: Runs entirely client/server-side without external paid API keys.",
+        "Comprehensive intent-matching test matrix covering 40+ curated academic categories.",
+        "Typo resilience test suite verifying query resolution across misspelled student prompts."
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "TF-IDF",
+        "Cosine Similarity",
+        "Vitest"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 96.2 },
+        { "name": "CSS", "pct": 2.6 },
+        { "name": "JavaScript", "pct": 1.2 }
+      ],
+      "createdAt": "2026-10-06T14:52:25Z",
+      "pushedAt": "2026-10-06T19:44:27Z",
+      "url": "https://github.com/skandachandrashekar335-wq/dscasc-ai",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "noctra",
+      "title": "Noctra",
+      "tagline": "PDF & presentation dark-mode conversion and study platform",
+      "category": "Tools",
+      "summary": "Browser-first document conversion utility and AI-assisted study workspace that transforms high-contrast light-mode slides, PDFs, and presentations into readable dark-mode study notes.",
+      "problem": "Students and engineers studying technical slides and PDF lecture notes late at night experience significant eye strain from harsh white backgrounds, while existing online converters add watermarks or compromise document privacy.",
+      "howItWorks": [
+        "Next.js client interface with client-side document parsing using PDF.js and Canvas rendering.",
+        "Color-inversion algorithms adapt diagrams, text contrast, and figures without corrupting embedded graphics.",
+        "Multi-provider study assistant generates concise conceptual summaries and revision checklists."
+      ],
+      "highlights": [
+        "Client-side processing preserves document privacy without requiring server uploads.",
+        "Smart color-mapping preserves image fidelity while darkening page backgrounds.",
+        "Vercel serverless deployment for instant access across desktop and mobile browsers."
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "PDF.js",
+        "Canvas API"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 92.4 },
+        { "name": "CSS", "pct": 7.6 }
+      ],
+      "createdAt": "2026-10-18T10:00:00Z",
+      "pushedAt": "2026-11-01T14:24:28Z",
+      "url": "https://github.com/skandachandrashekar335-wq/Noctra-pdfconverter",
+      "homepage": "https://noctra-pdfconverter.vercel.app",
+      "live": {
+        "url": "https://noctra-pdfconverter.vercel.app",
+        "embeddable": true,
+        "shot": null
+      },
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "waveil",
+      "title": "WAVEIL",
+      "tagline": "Local visual privacy controls for WhatsApp Web & Instagram",
+      "category": "Browser Security",
+      "summary": "A Manifest V3 browser extension that visually obscures sensitive messaging content already rendered on screen. Features layered DOM detection, independent privacy categories, hover reveals, and panic controls without network telemetry.",
+      "problem": "Using web messaging in public libraries, classrooms, or open-plan offices leaves private messages, sender identities, and media exposed to shoulder surfing.",
+      "howItWorks": [
+        "Dynamic MutationObservers monitor chat containers for incoming messages, infinite scrolls, and tab changes.",
+        "Scoped CSS blur filters obfuscate targeted DOM elements according to user privacy preferences.",
+        "Hover-intent triggers unblur specific elements cleanly and re-engages blur immediately upon pointer exit.",
+        "Global panic-lock shortcut instantly re-engages maximum obfuscation across all active messaging tabs."
+      ],
+      "highlights": [
+        "Independent toggle categories for message bodies, contact names, profile pictures, and media previews.",
+        "Zero external network telemetry: Manifest V3 declared with minimal permissions and no remote network calls.",
+        "DOM mutation stress tests across rapid infinite-scrolling WhatsApp Web conversations.",
+        "Permission audit verifying zero access outside supported messaging origins."
+      ],
+      "stack": [
+        "TypeScript",
+        "React",
+        "Manifest V3",
+        "Webpack",
+        "Chromium APIs",
+        "Vitest"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 84.3 },
+        { "name": "JavaScript", "pct": 10.6 },
+        { "name": "CSS", "pct": 4.9 },
+        { "name": "HTML", "pct": 0.2 }
+      ],
+      "createdAt": "2026-10-08T18:25:29Z",
+      "pushedAt": "2026-10-17T04:25:01Z",
+      "url": "https://github.com/skandachandrashekar335-wq/What-s-Not-Up",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "sutra",
+      "title": "SUTRA",
+      "tagline": "Anonymous doubt submission & intelligent question grouping",
+      "category": "AI & Education",
+      "summary": "A classroom Q&A platform enabling students in lecture halls to submit questions anonymously, using semantic clustering to group related doubts in real time so instructors can address conceptual blockers.",
+      "problem": "In large college lecture halls, students hesitate to raise questions due to social inhibitions, while instructors receive duplicate, fragmented questions across informal chat groups without clear thematic prioritization.",
+      "howItWorks": [
+        "Anonymous web portal allows students to submit questions with zero account creation or identity tracking.",
+        "FastAPI vector service pre-processes questions and clusters semantically related doubts.",
+        "Instructor live dashboard displays unified question clusters ranked by student upvotes and frequency.",
+        "Session archival exports addressed questions into formatted study guides."
+      ],
+      "highlights": [
+        "Zero-auth student interface removing friction and social anxiety from classroom participation.",
+        "Real-time semantic clustering preventing duplicate question fatigue for educators.",
+        "Ephemeral room sessions ensuring student anonymity and zero persistent tracking."
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Python",
+        "FastAPI",
+        "Vector Embeddings",
+        "Tailwind CSS"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 65.0 },
+        { "name": "Python", "pct": 35.0 }
+      ],
+      "createdAt": "2026-10-15T09:00:00Z",
+      "pushedAt": "2026-10-25T11:00:00Z",
+      "url": "https://github.com/skandachandrashekar335-wq",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "releaselens",
+      "title": "ReleaseLens",
+      "tagline": "Release engineering and CI quality documentation",
+      "category": "QA & Testing",
+      "summary": "A continuous quality engineering platform combining automated functional testing, accessibility checks, and performance auditing into evidence-based release readiness reports.",
+      "problem": "Engineering teams struggle to gather unified regression evidence, accessibility conformance, and release readiness across fragmented test outputs.",
+      "howItWorks": [
+        "Automated audit runner executes functional checks, WCAG compliance tests, and API validation.",
+        "Evidence collector compiles test traces, failure screenshots, and regression metrics into structured release logs.",
+        "Markdown export generator publishes automated release notes and quality scorecards to CI pipelines."
+      ],
+      "highlights": [
+        "Evidence-based reporting for QA engineers and release managers.",
+        "Deterministic regression tracking across builds.",
+        "Automated CI documentation generation."
+      ],
+      "stack": [
+        "TypeScript",
+        "Jest",
+        "Playwright",
+        "Lighthouse",
+        "Node.js"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 95.0 },
+        { "name": "JavaScript", "pct": 5.0 }
+      ],
+      "createdAt": "2026-10-28T08:00:00Z",
+      "pushedAt": "2026-10-30T10:52:14Z",
+      "url": "https://github.com/skandachandrashekar335-wq/ReleaseLens",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
     {
       "slug": "examguard",
       "title": "ExamGuard",
@@ -67,7 +303,7 @@
       ],
       "highlights": [
         "Separated algorithmic verification evidence generation from final review authority — algorithms score, but humans decide.",
-        "2,554 backend tests verifying role permissions, token validations, ticket checks, and seating constraint algorithms.",
+        "Comprehensive backend validation suites verifying role permissions, token validations, ticket checks, and seating algorithms.",
         "Protected server-side facial embedding storage to prevent unauthorized biometric extraction.",
         "Deterministic mock testing for webcam video capture and liveness detection fallbacks."
       ],
@@ -97,48 +333,6 @@
         "embeddable": true,
         "shot": "/shots/examguard.png"
       },
-      "stars": 1,
-      "private": false
-    },
-    {
-      "slug": "substiflow",
-      "title": "SubstiFlow",
-      "tagline": "Offline timetable generation & faculty substitution management",
-      "category": "Systems",
-      "summary": "Replaces spreadsheet-driven substitution chaos with a local desktop workflow: draft timetables, validate hard constraints, review deterministic substitute recommendations, and issue revised schedules without mutating master records.",
-      "problem": "Department coordinators face morning scrambles when faculty call in sick. Manual timetable spreadsheets cause classroom double-bookings, workload violations, and untracked substitution histories.",
-      "howItWorks": [
-        "Electron desktop app with React and TypeScript provides a fast, offline-capable coordinator interface.",
-        "Deterministic constraint-satisfaction engine evaluates schedule availability, subject qualifications, and teaching hour caps.",
-        "Transactional SQLite database records substitutions as deltas against the immutable master schedule.",
-        "Atomic export pipeline generates formatted daily substitution slips and PDF schedules."
-      ],
-      "highlights": [
-        "Local-first architecture ensures coordinators can resolve emergencies even during campus network outages.",
-        "Comprehensive property-based tests in Vitest validating constraint solver edge cases and cyclical conflicts.",
-        "Transactional SQLite rollback verification ensuring schedule mutations are never half-applied.",
-        "Immutable schedule locking once coordinator approval is granted."
-      ],
-      "stack": [
-        "Electron",
-        "React",
-        "TypeScript",
-        "SQLite",
-        "Vite",
-        "Vitest",
-        "Tailwind CSS"
-      ],
-      "languages": [
-        { "name": "TypeScript", "pct": 87.7 },
-        { "name": "JavaScript", "pct": 12.0 },
-        { "name": "CSS", "pct": 0.2 },
-        { "name": "HTML", "pct": 0.1 }
-      ],
-      "createdAt": "2026-09-24T18:00:48Z",
-      "pushedAt": "2026-10-24T12:33:13Z",
-      "url": "https://github.com/skandachandrashekar335-wq/SUBSTIFLOW",
-      "homepage": null,
-      "live": null,
       "stars": 1,
       "private": false
     },
@@ -186,158 +380,6 @@
       },
       "stars": 0,
       "private": false
-    },
-    {
-      "slug": "whats-not-up",
-      "title": "What's Not Up",
-      "tagline": "Local visual privacy controls for WhatsApp Web & Instagram",
-      "category": "Browser Security",
-      "summary": "A Manifest V3 extension that visually obscures sensitive content already rendered in messaging web apps. Features layered DOM detection, independent privacy categories, and instant panic controls.",
-      "problem": "Using web messaging in public libraries, classrooms, or open-plan offices leaves private messages, sender identities, and media exposed to shoulder surfing.",
-      "howItWorks": [
-        "Dynamic MutationObservers monitor chat containers for incoming messages, infinite scrolls, and tab changes.",
-        "Scoped CSS blur filters obfuscate targeted DOM elements according to user privacy preferences.",
-        "Hover-intent triggers unblur specific elements cleanly and re-engages blur immediately upon pointer exit.",
-        "Global panic-lock shortcut instantly re-engages maximum obfuscation across all active tabs."
-      ],
-      "highlights": [
-        "Independent toggle categories for message bodies, contact names, profile pictures, and media previews.",
-        "Zero external network telemetry: Manifest V3 declared with minimal permissions and no remote network calls.",
-        "DOM mutation stress tests across rapid infinite-scrolling WhatsApp Web conversations.",
-        "Permission audit verifying zero access outside supported messaging origins."
-      ],
-      "stack": [
-        "TypeScript",
-        "React",
-        "Manifest V3",
-        "Webpack",
-        "Chromium APIs",
-        "Vitest"
-      ],
-      "languages": [
-        { "name": "TypeScript", "pct": 84.3 },
-        { "name": "JavaScript", "pct": 10.6 },
-        { "name": "CSS", "pct": 4.9 },
-        { "name": "HTML", "pct": 0.2 }
-      ],
-      "createdAt": "2026-10-08T18:25:29Z",
-      "pushedAt": "2026-10-17T04:25:01Z",
-      "url": "https://github.com/skandachandrashekar335-wq/What-s-Not-Up",
-      "homepage": null,
-      "live": null,
-      "stars": 0,
-      "private": false
-    },
-    {
-      "slug": "dscasc-ai",
-      "title": "DSCASC AI",
-      "tagline": "Explainable NLP assistant for student guidance & campus services",
-      "category": "Explainable NLP",
-      "summary": "An academic guidance assistant built around an explainable NLP pipeline: normalizes student queries, builds TF-IDF vector models, ranks with cosine similarity, and falls back gracefully below confidence thresholds.",
-      "problem": "College students and prospective applicants frequently struggle to locate official guidance on admissions, fees, syllabus, and placement schedules across dispersed circulars and PDF notices.",
-      "howItWorks": [
-        "Text preprocessing pipeline normalizes college jargon, course abbreviations (BCA, MCA, MBA), and common student typos.",
-        "Vector engine generates TF-IDF representations from curated institutional knowledge bases.",
-        "Cosine similarity rankings identify the closest official responses with inspectable confidence scores.",
-        "Queries falling below a 0.45 similarity threshold gracefully trigger structured contact cards rather than guessing answers."
-      ],
-      "highlights": [
-        "Deterministic explainability: Vector scores and similarity rankings are fully inspectable, eliminating LLM hallucinations.",
-        "Zero recurring inference costs: Runs entirely client/server-side without external paid API keys.",
-        "Comprehensive intent-matching test matrix covering 40+ curated academic categories.",
-        "Typo resilience test suite verifying query resolution across misspelled student prompts."
-      ],
-      "stack": [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "TF-IDF",
-        "Cosine Similarity",
-        "Vitest"
-      ],
-      "languages": [
-        { "name": "TypeScript", "pct": 96.2 },
-        { "name": "CSS", "pct": 2.6 },
-        { "name": "JavaScript", "pct": 1.2 }
-      ],
-      "createdAt": "2026-10-06T14:52:25Z",
-      "pushedAt": "2026-10-06T19:44:27Z",
-      "url": "https://github.com/skandachandrashekar335-wq/dscasc-ai",
-      "homepage": null,
-      "live": null,
-      "stars": 0,
-      "private": false
-    },
-    {
-      "slug": "Noctra-pdfconverter",
-      "title": "Noctra-pdfconverter",
-      "tagline": "Browser-first document conversion (PDF/PPTX) & study platform",
-      "category": "Tools",
-      "summary": "Browser-first dark-mode document conversion and AI-assisted study platform with multi-provider fallback.",
-      "problem": "Online document converters often require account signups, upload limits, or lack dark-mode study interfaces.",
-      "howItWorks": [
-        "Next.js client interface with client-side document processing.",
-        "Multi-provider fallback pipeline for AI-assisted study summaries."
-      ],
-      "highlights": [
-        "Client-side processing protecting document privacy.",
-        "Vercel serverless deployment."
-      ],
-      "stack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "PDF.js"
-      ],
-      "languages": [
-        { "name": "TypeScript", "pct": 92.4 },
-        { "name": "CSS", "pct": 7.6 }
-      ],
-      "createdAt": "2026-10-18T10:00:00Z",
-      "pushedAt": "2026-11-01T14:24:28Z",
-      "url": "https://github.com/skandachandrashekar335-wq/Noctra-pdfconverter",
-      "homepage": "https://noctra-pdfconverter.vercel.app",
-      "live": {
-        "url": "https://noctra-pdfconverter.vercel.app",
-        "embeddable": true,
-        "shot": null
-      },
-      "stars": 0,
-      "private": false
-    },
-    {
-      "slug": "ReleaseLens",
-      "title": "ReleaseLens",
-      "tagline": "Continuous quality engineering & release auditing platform",
-      "category": "QA & Testing",
-      "summary": "A continuous quality engineering and product auditing platform combining automated functional testing, accessibility checks, and performance auditing into evidence-based release reports.",
-      "problem": "Engineering teams struggle to gather unified regression evidence, accessibility conformance, and release readiness across fragmented test outputs.",
-      "howItWorks": [
-        "Automated audit runner executing functional checks, WCAG compliance tests, and API validation.",
-        "Evidence collector compiling test traces, failure screenshots, and regression metrics into structured release logs."
-      ],
-      "highlights": [
-        "Evidence-based reporting for QA and release managers.",
-        "Deterministic regression tracking across builds."
-      ],
-      "stack": [
-        "TypeScript",
-        "Jest",
-        "Playwright",
-        "Lighthouse",
-        "Node.js"
-      ],
-      "languages": [
-        { "name": "TypeScript", "pct": 95.0 },
-        { "name": "JavaScript", "pct": 5.0 }
-      ],
-      "createdAt": "2026-10-28T08:00:00Z",
-      "pushedAt": "2026-10-30T10:52:14Z",
-      "url": "https://github.com/skandachandrashekar335-wq/ReleaseLens",
-      "homepage": null,
-      "live": null,
-      "stars": 0,
-      "private": false
     }
   ],
   "skills": [
@@ -346,23 +388,23 @@
       "skills": [
         {
           "name": "TypeScript",
-          "projects": ["examguard", "substiflow", "whats-not-up", "dscasc-ai", "Noctra-pdfconverter", "ReleaseLens"]
+          "projects": ["substiflow", "dscasc-ai", "noctra", "waveil", "sutra", "releaselens", "examguard"]
         },
         {
           "name": "Python",
-          "projects": ["examguard"]
+          "projects": ["examguard", "sutra"]
         },
         {
           "name": "JavaScript",
-          "projects": ["anomoly-chat", "whats-not-up", "substiflow"]
+          "projects": ["anomoly-chat", "waveil", "substiflow"]
         },
         {
           "name": "SQL",
-          "projects": ["examguard", "substiflow"]
+          "projects": ["substiflow", "examguard"]
         },
         {
           "name": "HTML5 & CSS3",
-          "projects": ["anomoly-chat", "whats-not-up", "examguard"]
+          "projects": ["anomoly-chat", "waveil", "examguard"]
         }
       ]
     },
@@ -371,19 +413,19 @@
       "skills": [
         {
           "name": "Next.js",
-          "projects": ["examguard", "dscasc-ai", "Noctra-pdfconverter"]
+          "projects": ["dscasc-ai", "noctra", "sutra", "examguard"]
         },
         {
           "name": "React",
-          "projects": ["examguard", "substiflow", "whats-not-up", "dscasc-ai"]
+          "projects": ["substiflow", "dscasc-ai", "waveil", "examguard"]
         },
         {
           "name": "Tailwind CSS",
-          "projects": ["examguard", "substiflow", "Noctra-pdfconverter"]
+          "projects": ["substiflow", "noctra", "sutra", "examguard"]
         },
         {
           "name": "Web APIs",
-          "projects": ["anomoly-chat", "whats-not-up"]
+          "projects": ["anomoly-chat", "waveil", "noctra"]
         }
       ]
     },
@@ -392,19 +434,19 @@
       "skills": [
         {
           "name": "FastAPI",
-          "projects": ["examguard"]
+          "projects": ["examguard", "sutra"]
         },
         {
           "name": "Node.js",
-          "projects": ["ReleaseLens", "anomoly-chat"]
-        },
-        {
-          "name": "PostgreSQL",
-          "projects": ["examguard"]
+          "projects": ["releaselens", "anomoly-chat"]
         },
         {
           "name": "SQLite",
           "projects": ["substiflow"]
+        },
+        {
+          "name": "PostgreSQL",
+          "projects": ["examguard"]
         },
         {
           "name": "Electron",
@@ -417,19 +459,19 @@
       "skills": [
         {
           "name": "Vitest",
-          "projects": ["substiflow", "whats-not-up", "dscasc-ai"]
+          "projects": ["substiflow", "dscasc-ai", "waveil"]
         },
         {
           "name": "Jest",
-          "projects": ["ReleaseLens"]
+          "projects": ["releaselens"]
         },
         {
           "name": "Playwright",
-          "projects": ["ReleaseLens"]
+          "projects": ["releaselens"]
         },
         {
           "name": "Integration Testing",
-          "projects": ["examguard", "ReleaseLens"]
+          "projects": ["examguard", "releaselens"]
         },
         {
           "name": "Mock Suites",
@@ -438,23 +480,23 @@
       ]
     },
     {
-      "name": "AI & Computer Vision",
+      "name": "AI & NLP",
       "skills": [
-        {
-          "name": "UniFace",
-          "projects": ["examguard"]
-        },
-        {
-          "name": "OpenCV",
-          "projects": ["examguard"]
-        },
         {
           "name": "TF-IDF & Cosine Similarity",
           "projects": ["dscasc-ai"]
         },
         {
+          "name": "Vector Embeddings",
+          "projects": ["sutra"]
+        },
+        {
+          "name": "UniFace & OpenCV",
+          "projects": ["examguard"]
+        },
+        {
           "name": "LangChain",
-          "projects": ["Noctra-pdfconverter"]
+          "projects": ["noctra"]
         }
       ]
     },
@@ -467,11 +509,11 @@
         },
         {
           "name": "Git & GitHub Actions",
-          "projects": ["examguard", "ReleaseLens"]
+          "projects": ["releaselens", "examguard"]
         },
         {
           "name": "Webpack",
-          "projects": ["whats-not-up"]
+          "projects": ["waveil"]
         },
         {
           "name": "Vite",

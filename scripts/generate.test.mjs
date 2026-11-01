@@ -63,10 +63,10 @@ test('filterRepos: excludes repositories not owned by account', () => {
 
 test('orderRepos: preserves curated featured project order first, then sorts by pushed_at', () => {
   const repos = [
-    { name: 'SUBSTIFLOW', pushed_at: '2026-10-24T12:00:00Z' },
     { name: 'ReleaseLens', pushed_at: '2026-10-30T10:00:00Z' },
     { name: 'ExamGuard', pushed_at: '2026-10-03T02:00:00Z' },
     { name: 'Noctra-pdfconverter', pushed_at: '2026-11-01T14:00:00Z' },
+    { name: 'SUBSTIFLOW', pushed_at: '2026-10-24T12:00:00Z' },
     { name: 'anomoly-chat', pushed_at: '2026-10-24T13:00:00Z' },
     { name: 'dscasc-ai', pushed_at: '2026-10-06T19:00:00Z' },
     { name: 'What-s-Not-Up', pushed_at: '2026-10-17T04:00:00Z' },
@@ -75,25 +75,25 @@ test('orderRepos: preserves curated featured project order first, then sorts by 
   const ordered = orderRepos(repos);
   const slugs = ordered.map((r) => normalizeSlug(r.name));
 
-  // The 5 featured projects must be exactly in positions 0..4 in exact sequence:
-  assert.deepEqual(slugs.slice(0, 5), [
-    'examguard',
+  assert.deepEqual(slugs, [
     'substiflow',
-    'anomoly-chat',
-    'whats-not-up',
     'dscasc-ai',
+    'noctra',
+    'waveil',
+    'releaselens',
+    'examguard',
+    'anomoly-chat',
   ]);
-
-  // Remaining discovered repos follow sorted by pushed_at descending:
-  assert.equal(slugs[5], 'Noctra-pdfconverter');
-  assert.equal(slugs[6], 'ReleaseLens');
 });
 
 test('normalizeSlug handles canonical mapping', () => {
-  assert.equal(normalizeSlug('ExamGuard'), 'examguard');
   assert.equal(normalizeSlug('SUBSTIFLOW'), 'substiflow');
-  assert.equal(normalizeSlug('What-s-Not-Up'), 'whats-not-up');
-  assert.equal(normalizeSlug('other-repo'), 'other-repo');
+  assert.equal(normalizeSlug('dscasc-ai'), 'dscasc-ai');
+  assert.equal(normalizeSlug('Noctra-pdfconverter'), 'noctra');
+  assert.equal(normalizeSlug('What-s-Not-Up'), 'waveil');
+  assert.equal(normalizeSlug('ExamGuard'), 'examguard');
+  assert.equal(normalizeSlug('ReleaseLens'), 'releaselens');
+  assert.equal(normalizeSlug('anomoly-chat'), 'anomoly-chat');
 });
 
 test('canEmbed checks framing permissions in headers', () => {

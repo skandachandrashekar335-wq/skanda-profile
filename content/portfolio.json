@@ -1,0 +1,487 @@
+{
+  "updatedAt": "2026-11-01T20:50:00.000Z",
+  "profileVersion": "2026-11-01T20:50:00Z",
+  "profile": {
+    "name": "Skanda Chandrashekhar",
+    "headline": "dependable systems, AI automation, QA",
+    "intro": "I work across software development, AI automation, and software quality. I am a BCA student at Dayananda Sagar College in Bengaluru, building practical software systems, testing them rigorously, and turning ideas into dependable products.",
+    "education": "BCA, Dayananda Sagar College of Arts, Science & Commerce, Bengaluru",
+    "now": [
+      {
+        "title": "ExamGuard",
+        "body": "Developing an end-to-end examination verification platform integrating Next.js, Python FastAPI, biometric liveness checks, and tamper-resistant audit logs."
+      },
+      {
+        "title": "SubstiFlow",
+        "body": "Maintaining automated faculty substitution scheduling with React, TypeScript, SQLite, and deterministic constraint algorithms."
+      },
+      {
+        "title": "QA & Testing Discipline",
+        "body": "Designing comprehensive test suites with unit assertions, mock pipelines, and property-based verification for resilient software delivery."
+      }
+    ],
+    "stack": [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Next.js",
+      "React",
+      "FastAPI",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma",
+      "SQLite",
+      "Electron",
+      "Tailwind CSS",
+      "Jest",
+      "Vitest",
+      "Playwright",
+      "WebRTC",
+      "LangChain",
+      "OpenCV",
+      "UniFace",
+      "Docker",
+      "Git",
+      "Cloudinary",
+      "Firebase"
+    ],
+    "availability": "Open to software development, QA/testing, and AI/automation internships.",
+    "email": "skandachandrashekar335@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/skanda-chandrashekhar-72b35a32a",
+    "avatar": "https://avatars.githubusercontent.com/u/254150727?v=4",
+    "github": "https://github.com/skandachandrashekar335-wq"
+  },
+  "projects": [
+    {
+      "slug": "examguard",
+      "title": "ExamGuard",
+      "tagline": "Examination management & identity verification for secure exam entry",
+      "category": "AI & Security",
+      "summary": "Connects student registration, hall tickets, seating plans, invigilation, and browser-based identity verification into one auditable examination workflow. Algorithms score liveness and facial likeness while human review retains decision sovereignty.",
+      "problem": "Traditional exam entry relies on manual hall-ticket checks and visual ID verification by invigilators, which is slow, vulnerable to impersonation by proxy candidates, and produces no auditable trail.",
+      "howItWorks": [
+        "Next.js operational dashboard manages exam schedules, hall-ticket issuance, and room-level seat allocations.",
+        "Python/FastAPI verification service receives webcam streams and runs the UniFace facial recognition pipeline with liveness estimation.",
+        "Configurable threshold rules flag potential mismatches, poor lighting, or proxy candidates for coordinator review.",
+        "Cloudinary securely stores photo evidence while PostgreSQL records an immutable audit log of all verification decisions."
+      ],
+      "highlights": [
+        "Separated algorithmic verification evidence generation from final review authority — algorithms score, but humans decide.",
+        "2,554 backend tests verifying role permissions, token validations, ticket checks, and seating constraint algorithms.",
+        "Protected server-side facial embedding storage to prevent unauthorized biometric extraction.",
+        "Deterministic mock testing for webcam video capture and liveness detection fallbacks."
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "UniFace",
+        "OpenCV",
+        "Cloudinary",
+        "Docker"
+      ],
+      "languages": [
+        { "name": "Python", "pct": 76.3 },
+        { "name": "TypeScript", "pct": 22.2 },
+        { "name": "CSS", "pct": 1.4 },
+        { "name": "Dockerfile", "pct": 0.1 }
+      ],
+      "createdAt": "2026-08-30T18:00:00Z",
+      "pushedAt": "2026-10-03T02:41:10Z",
+      "url": "https://github.com/skandachandrashekar335-wq/ExamGuard",
+      "homepage": "https://exam-guardian-management.vercel.app",
+      "live": {
+        "url": "https://exam-guardian-management.vercel.app",
+        "embeddable": true,
+        "shot": "/shots/examguard.png"
+      },
+      "stars": 1,
+      "private": false
+    },
+    {
+      "slug": "substiflow",
+      "title": "SubstiFlow",
+      "tagline": "Offline timetable generation & faculty substitution management",
+      "category": "Systems",
+      "summary": "Replaces spreadsheet-driven substitution chaos with a local desktop workflow: draft timetables, validate hard constraints, review deterministic substitute recommendations, and issue revised schedules without mutating master records.",
+      "problem": "Department coordinators face morning scrambles when faculty call in sick. Manual timetable spreadsheets cause classroom double-bookings, workload violations, and untracked substitution histories.",
+      "howItWorks": [
+        "Electron desktop app with React and TypeScript provides a fast, offline-capable coordinator interface.",
+        "Deterministic constraint-satisfaction engine evaluates schedule availability, subject qualifications, and teaching hour caps.",
+        "Transactional SQLite database records substitutions as deltas against the immutable master schedule.",
+        "Atomic export pipeline generates formatted daily substitution slips and PDF schedules."
+      ],
+      "highlights": [
+        "Local-first architecture ensures coordinators can resolve emergencies even during campus network outages.",
+        "Comprehensive property-based tests in Vitest validating constraint solver edge cases and cyclical conflicts.",
+        "Transactional SQLite rollback verification ensuring schedule mutations are never half-applied.",
+        "Immutable schedule locking once coordinator approval is granted."
+      ],
+      "stack": [
+        "Electron",
+        "React",
+        "TypeScript",
+        "SQLite",
+        "Vite",
+        "Vitest",
+        "Tailwind CSS"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 87.7 },
+        { "name": "JavaScript", "pct": 12.0 },
+        { "name": "CSS", "pct": 0.2 },
+        { "name": "HTML", "pct": 0.1 }
+      ],
+      "createdAt": "2026-09-24T18:00:48Z",
+      "pushedAt": "2026-10-24T12:33:13Z",
+      "url": "https://github.com/skandachandrashekar335-wq/SUBSTIFLOW",
+      "homepage": null,
+      "live": null,
+      "stars": 1,
+      "private": false
+    },
+    {
+      "slug": "anomoly-chat",
+      "title": "Anomoly Chat",
+      "tagline": "Accountless peer-to-peer chat & document transfer between browsers",
+      "category": "WebRTC & Privacy",
+      "summary": "Creates temporary browser-to-browser rooms using WebRTC data channels. Messages and documents stay in memory, binary transfers are checked with SHA-256, and sessions self-destruct on schedule without database persistence.",
+      "problem": "Standard messaging apps require phone numbers or email logins, persist full message histories on centralized servers, and subject private file transfers to cloud indexing.",
+      "howItWorks": [
+        "PeerJS coordinates room signaling to establish direct WebRTC RTCDataChannel connections between browsers.",
+        "Ephemeral in-memory buffers handle message delivery with zero central server storage.",
+        "Files up to 10 MiB are sliced into 16 KiB binary chunks and streamed peer-to-peer with transfer progress tracking.",
+        "Client-side Web Crypto API calculates SHA-256 digests on both sender and receiver to verify payload integrity."
+      ],
+      "highlights": [
+        "Accountless by design: No database, no user accounts, no message history persisted on any central server.",
+        "Scheduled session self-destruction clears all in-memory buffers upon room timer expiry.",
+        "Simulated packet-loss and reconnection test scenarios over high-latency peer connections.",
+        "Transparent security disclosures outlining WebRTC peer IP exposure boundaries."
+      ],
+      "stack": [
+        "JavaScript",
+        "WebRTC",
+        "PeerJS",
+        "Web Crypto API",
+        "HTML5",
+        "CSS3"
+      ],
+      "languages": [
+        { "name": "HTML", "pct": 45.9 },
+        { "name": "JavaScript", "pct": 27.4 },
+        { "name": "CSS", "pct": 17.3 },
+        { "name": "TypeScript", "pct": 9.4 }
+      ],
+      "createdAt": "2026-10-13T13:50:55Z",
+      "pushedAt": "2026-10-24T13:36:11Z",
+      "url": "https://github.com/skandachandrashekar335-wq/anomoly-chat",
+      "homepage": "https://anomoly-chat.vercel.app",
+      "live": {
+        "url": "https://anomoly-chat.vercel.app",
+        "embeddable": true,
+        "shot": "/shots/anomoly-chat.png"
+      },
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "whats-not-up",
+      "title": "What's Not Up",
+      "tagline": "Local visual privacy controls for WhatsApp Web & Instagram",
+      "category": "Browser Security",
+      "summary": "A Manifest V3 extension that visually obscures sensitive content already rendered in messaging web apps. Features layered DOM detection, independent privacy categories, and instant panic controls.",
+      "problem": "Using web messaging in public libraries, classrooms, or open-plan offices leaves private messages, sender identities, and media exposed to shoulder surfing.",
+      "howItWorks": [
+        "Dynamic MutationObservers monitor chat containers for incoming messages, infinite scrolls, and tab changes.",
+        "Scoped CSS blur filters obfuscate targeted DOM elements according to user privacy preferences.",
+        "Hover-intent triggers unblur specific elements cleanly and re-engages blur immediately upon pointer exit.",
+        "Global panic-lock shortcut instantly re-engages maximum obfuscation across all active tabs."
+      ],
+      "highlights": [
+        "Independent toggle categories for message bodies, contact names, profile pictures, and media previews.",
+        "Zero external network telemetry: Manifest V3 declared with minimal permissions and no remote network calls.",
+        "DOM mutation stress tests across rapid infinite-scrolling WhatsApp Web conversations.",
+        "Permission audit verifying zero access outside supported messaging origins."
+      ],
+      "stack": [
+        "TypeScript",
+        "React",
+        "Manifest V3",
+        "Webpack",
+        "Chromium APIs",
+        "Vitest"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 84.3 },
+        { "name": "JavaScript", "pct": 10.6 },
+        { "name": "CSS", "pct": 4.9 },
+        { "name": "HTML", "pct": 0.2 }
+      ],
+      "createdAt": "2026-10-08T18:25:29Z",
+      "pushedAt": "2026-10-17T04:25:01Z",
+      "url": "https://github.com/skandachandrashekar335-wq/What-s-Not-Up",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "dscasc-ai",
+      "title": "DSCASC AI",
+      "tagline": "Explainable NLP assistant for student guidance & campus services",
+      "category": "Explainable NLP",
+      "summary": "An academic guidance assistant built around an explainable NLP pipeline: normalizes student queries, builds TF-IDF vector models, ranks with cosine similarity, and falls back gracefully below confidence thresholds.",
+      "problem": "College students and prospective applicants frequently struggle to locate official guidance on admissions, fees, syllabus, and placement schedules across dispersed circulars and PDF notices.",
+      "howItWorks": [
+        "Text preprocessing pipeline normalizes college jargon, course abbreviations (BCA, MCA, MBA), and common student typos.",
+        "Vector engine generates TF-IDF representations from curated institutional knowledge bases.",
+        "Cosine similarity rankings identify the closest official responses with inspectable confidence scores.",
+        "Queries falling below a 0.45 similarity threshold gracefully trigger structured contact cards rather than guessing answers."
+      ],
+      "highlights": [
+        "Deterministic explainability: Vector scores and similarity rankings are fully inspectable, eliminating LLM hallucinations.",
+        "Zero recurring inference costs: Runs entirely client/server-side without external paid API keys.",
+        "Comprehensive intent-matching test matrix covering 40+ curated academic categories.",
+        "Typo resilience test suite verifying query resolution across misspelled student prompts."
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "TF-IDF",
+        "Cosine Similarity",
+        "Vitest"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 96.2 },
+        { "name": "CSS", "pct": 2.6 },
+        { "name": "JavaScript", "pct": 1.2 }
+      ],
+      "createdAt": "2026-10-06T14:52:25Z",
+      "pushedAt": "2026-10-06T19:44:27Z",
+      "url": "https://github.com/skandachandrashekar335-wq/dscasc-ai",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "Noctra-pdfconverter",
+      "title": "Noctra-pdfconverter",
+      "tagline": "Browser-first document conversion (PDF/PPTX) & study platform",
+      "category": "Tools",
+      "summary": "Browser-first dark-mode document conversion and AI-assisted study platform with multi-provider fallback.",
+      "problem": "Online document converters often require account signups, upload limits, or lack dark-mode study interfaces.",
+      "howItWorks": [
+        "Next.js client interface with client-side document processing.",
+        "Multi-provider fallback pipeline for AI-assisted study summaries."
+      ],
+      "highlights": [
+        "Client-side processing protecting document privacy.",
+        "Vercel serverless deployment."
+      ],
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "PDF.js"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 92.4 },
+        { "name": "CSS", "pct": 7.6 }
+      ],
+      "createdAt": "2026-10-18T10:00:00Z",
+      "pushedAt": "2026-11-01T14:24:28Z",
+      "url": "https://github.com/skandachandrashekar335-wq/Noctra-pdfconverter",
+      "homepage": "https://noctra-pdfconverter.vercel.app",
+      "live": {
+        "url": "https://noctra-pdfconverter.vercel.app",
+        "embeddable": true,
+        "shot": null
+      },
+      "stars": 0,
+      "private": false
+    },
+    {
+      "slug": "ReleaseLens",
+      "title": "ReleaseLens",
+      "tagline": "Continuous quality engineering & release auditing platform",
+      "category": "QA & Testing",
+      "summary": "A continuous quality engineering and product auditing platform combining automated functional testing, accessibility checks, and performance auditing into evidence-based release reports.",
+      "problem": "Engineering teams struggle to gather unified regression evidence, accessibility conformance, and release readiness across fragmented test outputs.",
+      "howItWorks": [
+        "Automated audit runner executing functional checks, WCAG compliance tests, and API validation.",
+        "Evidence collector compiling test traces, failure screenshots, and regression metrics into structured release logs."
+      ],
+      "highlights": [
+        "Evidence-based reporting for QA and release managers.",
+        "Deterministic regression tracking across builds."
+      ],
+      "stack": [
+        "TypeScript",
+        "Jest",
+        "Playwright",
+        "Lighthouse",
+        "Node.js"
+      ],
+      "languages": [
+        { "name": "TypeScript", "pct": 95.0 },
+        { "name": "JavaScript", "pct": 5.0 }
+      ],
+      "createdAt": "2026-10-28T08:00:00Z",
+      "pushedAt": "2026-10-30T10:52:14Z",
+      "url": "https://github.com/skandachandrashekar335-wq/ReleaseLens",
+      "homepage": null,
+      "live": null,
+      "stars": 0,
+      "private": false
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "skills": [
+        {
+          "name": "TypeScript",
+          "projects": ["examguard", "substiflow", "whats-not-up", "dscasc-ai", "Noctra-pdfconverter", "ReleaseLens"]
+        },
+        {
+          "name": "Python",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "JavaScript",
+          "projects": ["anomoly-chat", "whats-not-up", "substiflow"]
+        },
+        {
+          "name": "SQL",
+          "projects": ["examguard", "substiflow"]
+        },
+        {
+          "name": "HTML5 & CSS3",
+          "projects": ["anomoly-chat", "whats-not-up", "examguard"]
+        }
+      ]
+    },
+    {
+      "name": "Frontend",
+      "skills": [
+        {
+          "name": "Next.js",
+          "projects": ["examguard", "dscasc-ai", "Noctra-pdfconverter"]
+        },
+        {
+          "name": "React",
+          "projects": ["examguard", "substiflow", "whats-not-up", "dscasc-ai"]
+        },
+        {
+          "name": "Tailwind CSS",
+          "projects": ["examguard", "substiflow", "Noctra-pdfconverter"]
+        },
+        {
+          "name": "Web APIs",
+          "projects": ["anomoly-chat", "whats-not-up"]
+        }
+      ]
+    },
+    {
+      "name": "Backend & Systems",
+      "skills": [
+        {
+          "name": "FastAPI",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "Node.js",
+          "projects": ["ReleaseLens", "anomoly-chat"]
+        },
+        {
+          "name": "PostgreSQL",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "SQLite",
+          "projects": ["substiflow"]
+        },
+        {
+          "name": "Electron",
+          "projects": ["substiflow"]
+        }
+      ]
+    },
+    {
+      "name": "QA & Testing",
+      "skills": [
+        {
+          "name": "Vitest",
+          "projects": ["substiflow", "whats-not-up", "dscasc-ai"]
+        },
+        {
+          "name": "Jest",
+          "projects": ["ReleaseLens"]
+        },
+        {
+          "name": "Playwright",
+          "projects": ["ReleaseLens"]
+        },
+        {
+          "name": "Integration Testing",
+          "projects": ["examguard", "ReleaseLens"]
+        },
+        {
+          "name": "Mock Suites",
+          "projects": ["examguard", "anomoly-chat"]
+        }
+      ]
+    },
+    {
+      "name": "AI & Computer Vision",
+      "skills": [
+        {
+          "name": "UniFace",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "OpenCV",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "TF-IDF & Cosine Similarity",
+          "projects": ["dscasc-ai"]
+        },
+        {
+          "name": "LangChain",
+          "projects": ["Noctra-pdfconverter"]
+        }
+      ]
+    },
+    {
+      "name": "DevOps & Tooling",
+      "skills": [
+        {
+          "name": "Docker",
+          "projects": ["examguard"]
+        },
+        {
+          "name": "Git & GitHub Actions",
+          "projects": ["examguard", "ReleaseLens"]
+        },
+        {
+          "name": "Webpack",
+          "projects": ["whats-not-up"]
+        },
+        {
+          "name": "Vite",
+          "projects": ["substiflow"]
+        },
+        {
+          "name": "Cloudinary",
+          "projects": ["examguard"]
+        }
+      ]
+    }
+  ]
+}

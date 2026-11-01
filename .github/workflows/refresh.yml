@@ -2,7 +2,7 @@ name: Sync GitHub Data
 
 on:
   schedule:
-    - cron: '0 4 * * *' # Daily at 04:00 UTC
+    - cron: '0 0 * * *' # Daily at 00:00 UTC
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
 permissions:
@@ -18,23 +18,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Generate latest GitHub data
-        run: node scripts/generate-github-data.mjs
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Generate latest portfolio data
+        run: node scripts/generate.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_READ_TOKEN: ${{ secrets.GH_READ_TOKEN }}
 
       - name: Commit and push changes
         run: |
-          git add content/github-data.json
-          git diff --cached --quiet && echo "No changes detected in GitHub data" && exit 0
+          git add content/portfolio.json
+          git diff --cached --quiet && echo "No changes detected in portfolio data" && exit 0
           git config user.name 'github-actions[bot]'
           git config user.email '41898283+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'data(github): sync repositories and profile telemetry'
-          git push
+          git commit -m 'chore(data): sync portfolio repositories from GitHub [skip ci]'
+          git push origin main

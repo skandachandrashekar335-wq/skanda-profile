@@ -44,5 +44,5 @@ jobs:
           git diff --cached --quiet && echo "No changes detected in portfolio data" && exit 0
           git config user.name 'github-actions[bot]'
           git config user.email '41898283+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'chore(data): sync portfolio repositories from GitHub [skip ci]'
+          git commit -m 'chore(data): sync portfolio catalog from GitHub'
           git push origin main

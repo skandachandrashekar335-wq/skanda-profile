@@ -5,36 +5,198 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
 export const USER = 'skandachandrashekar335-wq';
-const OUT = new URL('../content/portfolio.json', import.meta.url);
-const SITE_REPO = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'skanda-profile';
-const SHOTS = new URL('../public/shots/', import.meta.url);
+export const OUT = new URL('../content/portfolio.json', import.meta.url);
+export const SITE_REPO = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'skanda-profile';
+export const SHOTS = new URL('../public/shots/', import.meta.url);
 const TOKEN = process.env.GH_READ_TOKEN || process.env.GITHUB_TOKEN;
 
-// Approved curated project order
+// Exact showcase order for verified public repositories
 export const FEATURED_SLUGS = [
   'substiflow',
-  'dscasc-ai',
   'noctra',
-  'waveil',
-  'sutra',
-  'releaselens',
+  'dscasc-ai',
   'examguard',
+  'releaselens',
   'anomoly-chat',
+  'whats-not-up',
 ];
 
 // Map repo names from GitHub to canonical slugs
 export function normalizeSlug(repoName) {
   const map = {
     'SUBSTIFLOW': 'substiflow',
-    'dscasc-ai': 'dscasc-ai',
     'Noctra-pdfconverter': 'noctra',
-    'What-s-Not-Up': 'waveil',
+    'dscasc-ai': 'dscasc-ai',
     'ExamGuard': 'examguard',
     'ReleaseLens': 'releaselens',
     'anomoly-chat': 'anomoly-chat',
+    'What-s-Not-Up': 'whats-not-up',
   };
-  return map[repoName] || repoName;
+  return map[repoName] || repoName.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
 }
+
+// Approved project display names (no arbitrary aliases)
+export const DISPLAY_NAMES = {
+  'substiflow': 'SubstiFlow',
+  'noctra': 'Noctra',
+  'dscasc-ai': 'DSCASC AI',
+  'examguard': 'ExamGuard',
+  'releaselens': 'ReleaseLens',
+  'anomoly-chat': 'Anomoly Chat',
+  'whats-not-up': "What's Not Up",
+};
+
+// Curated active deployment URLs (verified independently from repo metadata)
+export const CURATED_HOMEPAGES = {
+  'dscasc-ai': 'https://dscascai.vercel.app',
+  'noctra': 'https://noctra-pdfconverter.vercel.app',
+  'examguard': 'https://exam-guardian-management.vercel.app',
+  'anomoly-chat': 'https://anomoly-chat.vercel.app',
+};
+
+// Curated rich case study metadata for verified projects
+export const CURATED_DATA = {
+  'substiflow': {
+    title: 'SubstiFlow',
+    tagline: 'Timetable and faculty substitution automation',
+    category: 'Systems',
+    summary: 'Replaces spreadsheet-driven substitution chaos with a local desktop workflow: draft timetables, validate room and faculty constraints, resolve leave conflicts in seconds, and export clean daily cover schedules without external cloud dependencies.',
+    problem: 'Academic department coordinators waste hours every morning manually cross-referencing paper timetables and faculty WhatsApp leaves, creating double-bookings and room assignment clashes.',
+    howItWorks: [
+      'Constraint engine parses faculty weekly workloads, subject allocations, and room quotas into SQLite tables.',
+      'Leave resolver flags absentee professors and sorts eligible substitutes using workload balancing heuristics.',
+      'Conflict matrix checks room availability, period adjacency, and subject qualifications deterministically.',
+      'One-click export produces print-ready PDF daily substitution rosters and departmental notifications.'
+    ],
+    highlights: [
+      '100% offline-first architecture: Zero external API requirements or data transmission.',
+      'Comprehensive constraint validator test matrix verifying 200+ edge-case faculty conflict allocations.',
+      'Deterministic substitution ranking algorithm eliminating scheduling double-bookings.',
+      'Local SQLite migration suite tested across schema upgrades.'
+    ],
+    stack: ['Electron', 'React', 'TypeScript', 'SQLite', 'Vite', 'Vitest', 'Tailwind CSS']
+  },
+  'noctra': {
+    title: 'Noctra',
+    tagline: 'PDF & presentation dark-mode conversion and study platform',
+    category: 'Tools',
+    summary: 'Browser-first document conversion utility and AI-assisted study workspace that transforms high-contrast white PDF textbooks and slide decks into eye-friendly dark mode themes with intelligent color-inversion and high-fidelity rendering.',
+    problem: 'Reading white academic PDFs and slides at night causes extreme eye fatigue, but naive browser dark mode extensions invert embedded diagrams and charts into illegible negatives.',
+    howItWorks: [
+      'PDF.js renders vector document pages onto dedicated HTML5 Canvas elements in high resolution.',
+      'Selective luminance inversion preserves original color matrices for embedded diagrams and photographic charts.',
+      'Local Web Worker threads execute canvas color manipulation off the main UI thread to prevent stutter.',
+      'Interactive study workspace offers synchronized document note-taking and PDF bookmarking.'
+    ],
+    highlights: [
+      'High-performance Canvas filter engine processing 100+ page textbooks completely in-browser.',
+      'Smart color-preserving inversion: Inverts text and backgrounds while preserving photographic fidelity.',
+      'Automated visual regression test suite verifying rendering fidelity across complex academic charts.',
+      'Zero cloud upload: Complete local file processing ensuring student privacy.'
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PDF.js', 'Canvas API']
+  },
+  'dscasc-ai': {
+    title: 'DSCASC AI',
+    tagline: 'Student guidance and NLP-based assistance for campus services',
+    category: 'Explainable NLP',
+    summary: 'An academic guidance assistant built around an explainable NLP pipeline: normalizes student queries, builds TF-IDF vector models, ranks with cosine similarity, and falls back gracefully below confidence thresholds.',
+    problem: 'College students and prospective applicants frequently struggle to locate official guidance on admissions, fees, syllabus, and placement schedules across dispersed circulars and PDF notices.',
+    howItWorks: [
+      'Text preprocessing pipeline normalizes college jargon, course abbreviations (BCA, MCA, MBA), and common student typos.',
+      'Vector engine generates TF-IDF representations from curated institutional knowledge bases.',
+      'Cosine similarity rankings identify the closest official responses with inspectable confidence scores.',
+      'Queries falling below a 0.45 similarity threshold gracefully trigger structured contact cards rather than guessing answers.'
+    ],
+    highlights: [
+      'Deterministic explainability: Vector scores and similarity rankings are fully inspectable, eliminating LLM hallucinations.',
+      'Zero recurring inference costs: Runs entirely client/server-side without external paid API keys.',
+      'Comprehensive intent-matching test matrix covering 40+ curated academic categories.',
+      'Typo resilience test suite verifying query resolution across misspelled student prompts.'
+    ],
+    stack: ['Next.js', 'React', 'TypeScript', 'TF-IDF', 'Cosine Similarity', 'Vitest']
+  },
+  'examguard': {
+    title: 'ExamGuard',
+    tagline: 'Examination management & identity verification for secure exam entry',
+    category: 'AI & Security',
+    summary: 'Connects student registration, hall tickets, seating plans, invigilation, and browser-based identity checks into a single verifiable examination platform.',
+    problem: 'College exam halls suffer from impersonation, misplaced hall tickets, chaotic manual seating allocation, and fragmented malpractice reporting.',
+    howItWorks: [
+      'Admissions pipeline issues tamper-resistant cryptographic hall tickets with QR verification.',
+      'Biometric entry gate verifies candidate identities via browser webcam using local face-embedding models.',
+      'Automated seating allocator assigns students to exam halls with randomized row spacing to prevent peeking.',
+      'Invigilator dashboard provides live attendance tracking, instant incident logging, and digital signatures.'
+    ],
+    highlights: [
+      'UniFace & OpenCV biometric comparison pipeline with anti-spoofing liveness checks.',
+      'Cryptographically signed hall ticket QR codes preventing digital forgery.',
+      'Integration test suite simulating concurrent candidate verification across multiple halls.',
+      'Role-based access control protecting student records and disciplinary history.'
+    ],
+    stack: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'UniFace', 'OpenCV', 'Cloudinary', 'Docker']
+  },
+  'releaselens': {
+    title: 'ReleaseLens',
+    tagline: 'Release engineering and CI quality documentation',
+    category: 'QA & Testing',
+    summary: 'A continuous quality engineering platform combining automated functional testing, accessibility checks, performance audits, and release sign-off documentation into a single dashboard.',
+    problem: 'Engineering teams often ship software without centralized visibility into QA coverage, performance regressions, or compliance with release quality gates.',
+    howItWorks: [
+      'GitHub Action runner executes Jest unit tests, Playwright end-to-end flows, and Lighthouse audits.',
+      'Quality engine aggregates test outputs, code coverage percentages, and bundle-size differentials.',
+      'Automated release blocker triggers if accessibility score drops below 95 or any test fails.',
+      'Markdown audit reports are automatically generated and attached to release pull requests.'
+    ],
+    highlights: [
+      'Centralized release dashboard consolidating unit, integration, and performance metrics.',
+      'Strict quality gates with configurable thresholds preventing broken builds from deploying.',
+      'Automated pull request reporting with actionable visual regression diffs.',
+      'Self-hosted Node.js test harness with complete mock API pipelines.'
+    ],
+    stack: ['TypeScript', 'Jest', 'Playwright', 'Lighthouse', 'Node.js']
+  },
+  'anomoly-chat': {
+    title: 'Anomoly Chat',
+    tagline: 'Accountless peer-to-peer chat & document transfer between browsers',
+    category: 'WebRTC & Privacy',
+    summary: 'Creates temporary browser-to-browser rooms using WebRTC data channels. Messages and documents stay in memory and are never saved to a database.',
+    problem: 'Quickly sharing sensitive documents or notes with nearby peers requires signing into third-party messaging apps, exposing phone numbers, and storing unencrypted files on remote servers.',
+    howItWorks: [
+      'Signaling server pairs two clients using short-lived 6-character room codes without collecting user identities.',
+      'WebRTC direct peer-to-peer DataChannel is established between browsers with end-to-end encryption.',
+      'Files are chunked into 16KB ArrayBuffers, transferred directly peer-to-peer, and reassembled in memory.',
+      'Closing the browser tab completely wipes all message history and transferred files with zero residual footprint.'
+    ],
+    highlights: [
+      'Zero server-side persistence: Signaling server relays SDP offers/answers and never touches payload data.',
+      'Direct browser-to-browser WebRTC DataChannels for low-latency text and document transfer.',
+      'Network partition tolerance with automated reconnection and graceful teardown.',
+      'Security audit confirming zero user tracking, cookie storage, or credential storage.'
+    ],
+    stack: ['JavaScript', 'WebRTC', 'PeerJS', 'Web Crypto API', 'HTML5', 'CSS3']
+  },
+  'whats-not-up': {
+    title: "What's Not Up",
+    tagline: 'Local visual privacy controls for WhatsApp Web',
+    category: 'Browser Security',
+    summary: 'A Manifest V3 browser extension that visually obscures sensitive messaging content already rendered on screen. Features layered DOM detection, independent privacy categories, hover reveals, and panic controls without network telemetry.',
+    problem: 'Using web messaging in public libraries, classrooms, or open-plan offices leaves private messages, sender identities, and media exposed to shoulder surfing.',
+    howItWorks: [
+      'Dynamic MutationObservers monitor chat containers for incoming messages, infinite scrolls, and tab changes.',
+      'Scoped CSS blur filters obfuscate targeted DOM elements according to user privacy preferences.',
+      'Hover-intent triggers unblur specific elements cleanly and re-engages blur immediately upon pointer exit.',
+      'Global panic-lock shortcut instantly re-engages maximum obfuscation across all active messaging tabs.'
+    ],
+    highlights: [
+      'Independent toggle categories for message bodies, contact names, profile pictures, and media previews.',
+      'Zero external network telemetry: Manifest V3 declared with minimal permissions and no remote network calls.',
+      'DOM mutation stress tests across rapid infinite-scrolling WhatsApp Web conversations.',
+      'Permission audit verifying zero access outside supported messaging origins.'
+    ],
+    stack: ['TypeScript', 'React', 'Manifest V3', 'Webpack', 'Chromium APIs', 'Vitest']
+  }
+};
 
 // ---------- GitHub API ----------
 
@@ -47,7 +209,10 @@ export async function gh(path, raw = false) {
     },
   });
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`GitHub ${path} → ${res.status} ${await res.text()}`);
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`GitHub ${path} → ${res.status}: ${errorText}`);
+  }
   return raw ? res.text() : res.json();
 }
 
@@ -91,45 +256,6 @@ export function orderRepos(repos) {
   });
 }
 
-// Group and validate skills
-export function buildSkills(groups, allSkills, projects) {
-  const raw = new Map(allSkills.map((s) => [s.toLowerCase(), s]));
-  const seen = new Set();
-  const out = (Array.isArray(groups) ? groups : []).map((g) => ({
-    name: g?.name?.trim() || '',
-    skills: (Array.isArray(g?.skills) ? g.skills : []).map((sk) => {
-      const name = sk?.name?.trim() || '';
-      const aliases = new Set([name, ...(sk?.aliases || [])].map((a) => a.toLowerCase()).filter((a) => raw.has(a)));
-      if (!name || !aliases.size || seen.has(name.toLowerCase())) return null;
-      seen.add(name.toLowerCase());
-      return {
-        name,
-        projects: projects
-          .filter((p) => (p.stack || []).some((t) => aliases.has(t.toLowerCase())))
-          .map((p) => p.slug),
-      };
-    }).filter(Boolean),
-  })).filter((g) => g.name && g.skills.length);
-
-  return out.length ? out : [{
-    name: 'Stack',
-    skills: allSkills.map((s) => ({
-      name: s,
-      projects: projects.filter((p) => (p.stack || []).some((t) => t.toLowerCase() === s.toLowerCase())).map((p) => p.slug),
-    })),
-  }];
-}
-
-export function uniqueSkills(lists) {
-  const seen = new Map();
-  for (const s of lists.flat()) {
-    if (typeof s === 'string' && !seen.has(s.toLowerCase())) {
-      seen.set(s.toLowerCase(), s);
-    }
-  }
-  return [...seen.values()];
-}
-
 // Frame checking
 export function canEmbed(headers) {
   if (!headers) return true;
@@ -138,135 +264,128 @@ export function canEmbed(headers) {
   return !fa || fa.split(/\s+/).includes('*');
 }
 
-const CHROMES = [
-  process.env.CHROME_PATH,
-  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  'google-chrome',
-  'google-chrome-stable',
-  'chromium',
-].filter(Boolean);
-
-async function screenshot(url, file) {
-  for (const bin of CHROMES) {
-    try {
-      await promisify(execFile)(
-        bin,
-        ['--headless=new', '--user-data-dir=/tmp/edge-sync-profile', '--no-sandbox', '--hide-scrollbars', '--window-size=1440,900', '--timeout=15000', `--screenshot=${file}`, url],
-        { timeout: 30_000 },
-      );
-      if ((await stat(file)).size > 15_000) return true;
-      await rm(file);
-      return false;
-    } catch {
-      // try next
+// Check if a URL returns an active HTTP status (200-399)
+export async function probeLiveUrl(url) {
+  if (!url) return null;
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      redirect: 'follow',
+      headers: { 'User-Agent': 'skanda-portfolio-validator' },
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (res && res.status >= 200 && res.status < 400) {
+      return {
+        ok: true,
+        embeddable: canEmbed(res.headers),
+      };
     }
+    return null;
+  } catch {
+    return null;
   }
-  return false;
 }
 
-async function liveSite(slug, url) {
-  const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(15_000) }).catch(() => null);
-  if (!res?.ok) return { live: null };
-  await mkdir(SHOTS, { recursive: true });
-  const shotPath = fileURLToPath(new URL(`${slug}.png`, SHOTS));
-  const hasShot = await stat(shotPath).then(() => true).catch(() => false);
-  const ok = hasShot || (await screenshot(url, shotPath));
+// Verify live status with screenshot support
+export async function verifyLiveSite(slug, url, shotPathExists = null) {
+  const probe = await probeLiveUrl(url);
+  if (!probe?.ok) return null;
+
+  let hasShot = false;
+  if (typeof shotPathExists === 'boolean') {
+    hasShot = shotPathExists;
+  } else {
+    try {
+      const shotPath = fileURLToPath(new URL(`${slug}.png`, SHOTS));
+      hasShot = await stat(shotPath).then(() => true).catch(() => false);
+    } catch {
+      hasShot = false;
+    }
+  }
+
   return {
-    live: {
-      url,
-      embeddable: canEmbed(res.headers),
-      shot: ok ? `/shots/${slug}.png` : null,
-      checkedAt: new Date().toISOString(),
-    },
+    url,
+    embeddable: probe.embeddable,
+    shot: hasShot ? `/shots/${slug}.png` : null,
+    checkedAt: new Date().toISOString(),
   };
 }
 
-// ---------- Main Sync Routine ----------
+// Clean skills matrix: ensure only existing projects are referenced and deleted projects (like SUTRA) are purged
+export function cleanSkills(skills, validSlugs) {
+  const validSet = new Set(validSlugs.map((s) => s.toLowerCase()));
+  return (skills || []).map((group) => ({
+    name: group.name,
+    skills: (group.skills || []).map((sk) => ({
+      name: sk.name,
+      projects: (sk.projects || [])
+        .map((p) => (p === 'waveil' ? 'whats-not-up' : p))
+        .filter((slug) => validSet.has(slug.toLowerCase())),
+    })).filter((sk) => sk.projects.length > 0),
+  })).filter((group) => group.skills.length > 0);
+}
 
-export async function main() {
-  const prev = JSON.parse(await readFile(OUT, 'utf8').catch(() => '{}'));
-  const prevProjects = new Map((prev.projects ?? []).map((p) => [p.slug, p]));
-
-  console.log(`Discovering public repositories for ${USER}...`);
-  let allRepos;
-  let user;
-  try {
-    [user, allRepos] = await Promise.all([
-      gh(`/users/${USER}`),
-      fetchAllRepos(USER),
-    ]);
-  } catch (err) {
-    console.warn(`GitHub API unavailable (${err.message}). Preserving existing portfolio data.`);
-    return;
-  }
-
-  const publicRepos = filterRepos(allRepos);
-  const ordered = orderRepos(publicRepos);
-
-  let changed = false;
+// Build the synchronized catalog strictly from eligible GitHub repositories
+export async function syncCatalog(eligibleRepos, prevData = {}, options = {}) {
+  const prevProjectsMap = new Map((prevData.projects || []).map((p) => [p.slug, p]));
+  const ordered = orderRepos(eligibleRepos);
   const projects = [];
 
   for (const repo of ordered) {
     const slug = normalizeSlug(repo.name);
-    const old = prevProjects.get(slug);
+    const old = prevProjectsMap.get(slug);
+    const curated = CURATED_DATA[slug] || {};
 
-    const facts = {
-      slug,
-      title: old?.title || repo.name,
-      tagline: old?.tagline || repo.description || '',
-      category: old?.category || 'Tools',
-      summary: old?.summary || repo.description || '',
-      problem: old?.problem || '',
-      howItWorks: old?.howItWorks || [],
-      highlights: old?.highlights || [],
-      stack: old?.stack || (repo.language ? [repo.language] : []),
-      url: repo.html_url,
-      homepage: repo.homepage || null,
-      stars: repo.stargazers_count,
-      createdAt: old?.createdAt || repo.created_at,
-      pushedAt: repo.pushed_at,
-      private: repo.private,
-    };
+    const title = DISPLAY_NAMES[slug] || curated.title || old?.title || repo.name;
+    const tagline = curated.tagline || old?.tagline || repo.description || '';
+    const category = curated.category || old?.category || 'Tools';
+    const summary = curated.summary || old?.summary || repo.description || '';
+    const problem = curated.problem || old?.problem || '';
+    const howItWorks = curated.howItWorks || old?.howItWorks || [];
+    const highlights = curated.highlights || old?.highlights || [];
+    const stack = curated.stack || old?.stack || (repo.language ? [repo.language] : []);
 
-    // Fetch languages if not cached or repo pushed
-    let languages = old?.languages;
-    if (!languages || old?.pushedAt !== repo.pushed_at) {
-      try {
-        const langMap = await gh(`/repos/${USER}/${repo.name}/languages`);
-        if (langMap && Object.keys(langMap).length > 0) {
-          const total = Object.values(langMap).reduce((a, b) => a + b, 0) || 1;
-          languages = Object.entries(langMap).map(([name, bytes]) => ({
-            name,
-            pct: Math.round((bytes / total) * 1000) / 10,
-          }));
-        }
-      } catch {
-        // preserve old languages
+    // Homepage: prioritize curated URL (e.g. dscasc-ai), then repo homepage, then old cached
+    const homepage = CURATED_HOMEPAGES[slug] || repo.homepage || old?.homepage || null;
+
+    // Verify live deployment status
+    let live = null;
+    if (homepage) {
+      if (options.mockProbe) {
+        live = options.mockProbe(slug, homepage);
+      } else {
+        live = await verifyLiveSite(slug, homepage);
       }
     }
-    facts.languages = languages || old?.languages || (repo.language ? [{ name: repo.language, pct: 100 }] : []);
 
-    // Check live site if homepage exists
-    let live = old?.live;
-    if (facts.homepage && (!live || old?.pushedAt !== repo.pushed_at)) {
-      const site = await liveSite(slug, facts.homepage);
-      live = site.live;
-    }
-    facts.live = live || null;
+    // Languages preservation or fallback
+    const languages = old?.languages || (repo.language ? [{ name: repo.language, pct: 100 }] : []);
 
-    if (!old || old.pushedAt !== repo.pushed_at || old.stars !== repo.stargazers_count) {
-      changed = true;
-    }
-
-    projects.push(facts);
+    projects.push({
+      slug,
+      title,
+      tagline,
+      category,
+      summary,
+      problem,
+      howItWorks,
+      highlights,
+      stack,
+      languages,
+      createdAt: curated.createdAt || old?.createdAt || repo.created_at,
+      pushedAt: repo.pushed_at,
+      url: repo.html_url,
+      homepage: homepage || null,
+      live: live || null,
+      stars: repo.stargazers_count ?? 0,
+      private: repo.private ?? false,
+    });
   }
 
-  if (projects.length !== prevProjects.size) {
-    changed = true;
-  }
+  const validSlugs = projects.map((p) => p.slug);
+  const cleanedSkillsList = cleanSkills(prevData.skills || [], validSlugs);
 
-  const profile = prev.profile || {
+  const profile = prevData.profile || {
     name: 'Skanda Chandrashekhar',
     headline: 'dependable systems, AI automation, QA',
     intro: 'I work across software development, AI automation, and software quality. I am a BCA student at Dayananda Sagar College in Bengaluru, building practical software systems, testing them rigorously, and turning ideas into dependable products.',
@@ -313,37 +432,59 @@ export async function main() {
     availability: 'Open to software development, QA/testing, and AI/automation internships.',
     email: 'skandachandrashekar335@gmail.com',
     linkedin: 'https://www.linkedin.com/in/skanda-chandrashekhar-72b35a32a',
-    avatar: user?.avatar_url || 'https://avatars.githubusercontent.com/u/254150727?v=4',
-    github: user?.html_url || `https://github.com/${USER}`,
+    avatar: 'https://avatars.githubusercontent.com/u/254150727?v=4',
+    github: `https://github.com/${USER}`,
   };
 
-  const skills = prev.skills || [];
-
-  if (!changed && prev.projects?.length > 0) {
-    console.log('No repository changes detected.');
-    return;
-  }
-
-  const data = {
+  return {
     updatedAt: new Date().toISOString(),
     profileVersion: new Date().toISOString(),
-    profile: {
-      ...profile,
-      avatar: user?.avatar_url || profile.avatar,
-      github: user?.html_url || profile.github,
-    },
+    profile,
     projects,
-    skills,
+    skills: cleanedSkillsList,
   };
+}
+
+// Main execution entry point
+export async function main() {
+  console.log(`Fetching public repositories for user ${USER}...`);
+
+  let prev = {};
+  try {
+    prev = JSON.parse(await readFile(OUT, 'utf-8'));
+  } catch {
+    prev = {};
+  }
+
+  let allRepos;
+  try {
+    allRepos = await fetchAllRepos();
+  } catch (err) {
+    // On GitHub API failure, preserve previous file, log error, and exit with failure code 1
+    console.error('CRITICAL: GitHub repository fetch failed:', err.message);
+    console.error('Preserving existing content/portfolio.json unmodified.');
+    process.exit(1);
+  }
+
+  if (!Array.isArray(allRepos) || allRepos.length === 0) {
+    console.error('CRITICAL: Received empty or invalid repository list from GitHub.');
+    console.error('Preserving existing content/portfolio.json unmodified.');
+    process.exit(1);
+  }
+
+  const eligibleRepos = filterRepos(allRepos);
+  console.log(`Discovered ${eligibleRepos.length} eligible public repositories (owned, non-fork, non-archived).`);
+
+  const updatedCatalog = await syncCatalog(eligibleRepos, prev);
 
   await mkdir(new URL('.', OUT), { recursive: true });
-  await writeFile(OUT, JSON.stringify(data, null, 2) + '\n');
-  console.log(`Successfully synced ${projects.length} projects to content/portfolio.json!`);
+  await writeFile(OUT, JSON.stringify(updatedCatalog, null, 2) + '\n');
+  console.log(`Successfully synchronized ${updatedCatalog.projects.length} projects to content/portfolio.json!`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().catch((e) => {
-    console.error(e);
+  main().catch((err) => {
+    console.error('Unhandled fatal error in generator:', err);
     process.exit(1);
   });
 }

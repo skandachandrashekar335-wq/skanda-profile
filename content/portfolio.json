@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-10T05:16:59.870Z",
-  "profileVersion": "2026-11-10T05:16:59.870Z",
+  "updatedAt": "2026-11-11T03:48:38.011Z",
+  "profileVersion": "2026-11-11T03:48:38.011Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-10T05:16:58.373Z"
+        "checkedAt": "2026-11-11T03:48:35.879Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-10T05:16:58.692Z"
+        "checkedAt": "2026-11-11T03:48:36.201Z"
       },
       "stars": 0,
       "private": false
@@ -257,14 +257,14 @@
         }
       ],
       "createdAt": "2026-08-30T18:00:00Z",
-      "pushedAt": "2026-11-09T19:47:17Z",
+      "pushedAt": "2026-11-10T10:10:23Z",
       "url": "https://github.com/skandachandrashekar335-wq/ExamGuard",
       "homepage": "https://exam-guardian-management.vercel.app",
       "live": {
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-10T05:16:59.139Z"
+        "checkedAt": "2026-11-11T03:48:37.411Z"
       },
       "stars": 1,
       "private": false
@@ -366,7 +366,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-10T05:16:59.563Z"
+        "checkedAt": "2026-11-11T03:48:37.797Z"
       },
       "stars": 0,
       "private": false
@@ -438,7 +438,7 @@
         "url": "https://temporary-repo-pi.vercel.app",
         "embeddable": true,
         "shot": null,
-        "checkedAt": "2026-11-10T05:16:59.870Z"
+        "checkedAt": "2026-11-11T03:48:38.011Z"
       },
       "stars": 0,
       "private": false

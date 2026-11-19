@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-18T05:11:06.794Z",
-  "profileVersion": "2026-11-18T05:11:06.794Z",
+  "updatedAt": "2026-11-19T05:04:55.890Z",
+  "profileVersion": "2026-11-19T05:04:55.890Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-18T05:11:04.275Z"
+        "checkedAt": "2026-11-19T05:04:53.763Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-18T05:11:04.682Z"
+        "checkedAt": "2026-11-19T05:04:53.999Z"
       },
       "stars": 0,
       "private": false
@@ -264,7 +264,7 @@
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-18T05:11:05.969Z"
+        "checkedAt": "2026-11-19T05:04:55.020Z"
       },
       "stars": 1,
       "private": false
@@ -366,7 +366,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-18T05:11:06.428Z"
+        "checkedAt": "2026-11-19T05:04:55.295Z"
       },
       "stars": 0,
       "private": false
@@ -424,10 +424,15 @@
       "stack": [],
       "languages": [],
       "createdAt": "2026-11-12T15:20:08Z",
-      "pushedAt": "2026-11-12T15:20:10Z",
+      "pushedAt": "2026-11-18T18:55:48Z",
       "url": "https://github.com/skandachandrashekar335-wq/Rent-Pilot",
-      "homepage": null,
-      "live": null,
+      "homepage": "https://rent-pilot-nine.vercel.app",
+      "live": {
+        "url": "https://rent-pilot-nine.vercel.app",
+        "embeddable": true,
+        "shot": null,
+        "checkedAt": "2026-11-19T05:04:55.734Z"
+      },
       "stars": 0,
       "private": false
     },
@@ -457,7 +462,7 @@
         "url": "https://temporary-repo-pi.vercel.app",
         "embeddable": true,
         "shot": null,
-        "checkedAt": "2026-11-18T05:11:06.794Z"
+        "checkedAt": "2026-11-19T05:04:55.890Z"
       },
       "stars": 0,
       "private": false

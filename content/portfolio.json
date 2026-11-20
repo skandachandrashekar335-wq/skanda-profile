@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-19T05:04:55.890Z",
-  "profileVersion": "2026-11-19T05:04:55.890Z",
+  "updatedAt": "2026-11-20T04:55:15.994Z",
+  "profileVersion": "2026-11-20T04:55:15.994Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-19T05:04:53.763Z"
+        "checkedAt": "2026-11-20T04:55:14.280Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-19T05:04:53.999Z"
+        "checkedAt": "2026-11-20T04:55:14.467Z"
       },
       "stars": 0,
       "private": false
@@ -264,7 +264,7 @@
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-19T05:04:55.020Z"
+        "checkedAt": "2026-11-20T04:55:15.335Z"
       },
       "stars": 1,
       "private": false
@@ -306,10 +306,15 @@
         }
       ],
       "createdAt": "2026-10-28T08:00:00Z",
-      "pushedAt": "2026-11-04T15:55:33Z",
+      "pushedAt": "2026-11-20T03:44:30Z",
       "url": "https://github.com/skandachandrashekar335-wq/ReleaseLens",
-      "homepage": null,
-      "live": null,
+      "homepage": "https://releaselens-psi.vercel.app",
+      "live": {
+        "url": "https://releaselens-psi.vercel.app",
+        "embeddable": false,
+        "shot": null,
+        "checkedAt": "2026-11-20T04:55:15.582Z"
+      },
       "stars": 0,
       "private": false
     },
@@ -366,7 +371,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-19T05:04:55.295Z"
+        "checkedAt": "2026-11-20T04:55:15.692Z"
       },
       "stars": 0,
       "private": false
@@ -415,23 +420,23 @@
     {
       "slug": "rent-pilot",
       "title": "Rent-Pilot",
-      "tagline": "",
+      "tagline": "RentPilot is a cloud-based rental management platform for landlords and tenants, featuring property management, automated billing workflows, UPI payment tracking, maintenance requests, and secure tenant portals.",
       "category": "Tools",
-      "summary": "",
+      "summary": "RentPilot is a cloud-based rental management platform for landlords and tenants, featuring property management, automated billing workflows, UPI payment tracking, maintenance requests, and secure tenant portals.",
       "problem": "",
       "howItWorks": [],
       "highlights": [],
       "stack": [],
       "languages": [],
       "createdAt": "2026-11-12T15:20:08Z",
-      "pushedAt": "2026-11-18T18:55:48Z",
+      "pushedAt": "2026-11-20T04:51:18Z",
       "url": "https://github.com/skandachandrashekar335-wq/Rent-Pilot",
       "homepage": "https://rent-pilot-nine.vercel.app",
       "live": {
         "url": "https://rent-pilot-nine.vercel.app",
-        "embeddable": true,
+        "embeddable": false,
         "shot": null,
-        "checkedAt": "2026-11-19T05:04:55.734Z"
+        "checkedAt": "2026-11-20T04:55:15.883Z"
       },
       "stars": 0,
       "private": false
@@ -462,7 +467,7 @@
         "url": "https://temporary-repo-pi.vercel.app",
         "embeddable": true,
         "shot": null,
-        "checkedAt": "2026-11-19T05:04:55.890Z"
+        "checkedAt": "2026-11-20T04:55:15.994Z"
       },
       "stars": 0,
       "private": false

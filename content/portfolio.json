@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-21T04:50:34.324Z",
-  "profileVersion": "2026-11-21T04:50:34.324Z",
+  "updatedAt": "2026-11-22T04:06:18.200Z",
+  "profileVersion": "2026-11-22T04:06:18.200Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-21T04:50:30.903Z"
+        "checkedAt": "2026-11-22T04:06:16.630Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-21T04:50:31.365Z"
+        "checkedAt": "2026-11-22T04:06:16.767Z"
       },
       "stars": 0,
       "private": false
@@ -264,7 +264,7 @@
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-21T04:50:32.697Z"
+        "checkedAt": "2026-11-22T04:06:17.665Z"
       },
       "stars": 1,
       "private": false
@@ -306,14 +306,14 @@
         }
       ],
       "createdAt": "2026-10-28T08:00:00Z",
-      "pushedAt": "2026-11-20T10:54:29Z",
+      "pushedAt": "2026-11-21T17:28:46Z",
       "url": "https://github.com/skandachandrashekar335-wq/ReleaseLens",
       "homepage": "https://releaselens-psi.vercel.app",
       "live": {
         "url": "https://releaselens-psi.vercel.app",
         "embeddable": false,
         "shot": null,
-        "checkedAt": "2026-11-21T04:50:33.137Z"
+        "checkedAt": "2026-11-22T04:06:17.853Z"
       },
       "stars": 0,
       "private": false
@@ -371,7 +371,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-21T04:50:33.556Z"
+        "checkedAt": "2026-11-22T04:06:17.895Z"
       },
       "stars": 0,
       "private": false
@@ -429,14 +429,14 @@
       "stack": [],
       "languages": [],
       "createdAt": "2026-11-12T15:20:08Z",
-      "pushedAt": "2026-11-20T15:41:16Z",
+      "pushedAt": "2026-11-21T17:22:57Z",
       "url": "https://github.com/skandachandrashekar335-wq/Rent-Pilot",
       "homepage": "https://rent-pilot-nine.vercel.app",
       "live": {
         "url": "https://rent-pilot-nine.vercel.app",
         "embeddable": false,
         "shot": null,
-        "checkedAt": "2026-11-21T04:50:33.979Z"
+        "checkedAt": "2026-11-22T04:06:18.134Z"
       },
       "stars": 0,
       "private": false
@@ -467,7 +467,7 @@
         "url": "https://temporary-repo-pi.vercel.app",
         "embeddable": true,
         "shot": null,
-        "checkedAt": "2026-11-21T04:50:34.324Z"
+        "checkedAt": "2026-11-22T04:06:18.200Z"
       },
       "stars": 0,
       "private": false

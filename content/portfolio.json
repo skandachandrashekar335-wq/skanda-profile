@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-27T05:53:37.686Z",
-  "profileVersion": "2026-11-27T05:53:37.686Z",
+  "updatedAt": "2026-11-28T05:33:04.310Z",
+  "profileVersion": "2026-11-28T05:33:04.310Z",
   "profile": {
     "name": "Skanda Chandrashekhar",
     "headline": "dependable systems, AI automation, QA",
@@ -149,7 +149,7 @@
         "url": "https://noctra-pdfconverter.vercel.app",
         "embeddable": true,
         "shot": "/shots/noctra.png",
-        "checkedAt": "2026-11-27T05:53:34.978Z"
+        "checkedAt": "2026-11-28T05:33:00.992Z"
       },
       "stars": 0,
       "private": false
@@ -203,7 +203,7 @@
         "url": "https://dscascai.vercel.app",
         "embeddable": true,
         "shot": "/shots/dscasc-ai.png",
-        "checkedAt": "2026-11-27T05:53:35.138Z"
+        "checkedAt": "2026-11-28T05:33:01.122Z"
       },
       "stars": 0,
       "private": false
@@ -264,7 +264,7 @@
         "url": "https://exam-guardian-management.vercel.app",
         "embeddable": false,
         "shot": "/shots/examguard.png",
-        "checkedAt": "2026-11-27T05:53:36.054Z"
+        "checkedAt": "2026-11-28T05:33:02.074Z"
       },
       "stars": 1,
       "private": false
@@ -313,7 +313,7 @@
         "url": "https://releaselens-psi.vercel.app",
         "embeddable": false,
         "shot": null,
-        "checkedAt": "2026-11-27T05:53:36.256Z"
+        "checkedAt": "2026-11-28T05:33:02.238Z"
       },
       "stars": 0,
       "private": false
@@ -371,7 +371,7 @@
         "url": "https://anomoly-chat.vercel.app",
         "embeddable": false,
         "shot": "/shots/anomoly-chat.png",
-        "checkedAt": "2026-11-27T05:53:36.359Z"
+        "checkedAt": "2026-11-28T05:33:02.365Z"
       },
       "stars": 0,
       "private": false
@@ -420,19 +420,24 @@
     {
       "slug": "link-me",
       "title": "Link-Me",
-      "tagline": "",
+      "tagline": "Zero-cloud, end-to-end encrypted Android-to-macOS continuity bridge with Bluetooth-first transport, Wi-Fi mTLS 1.3 turbo mode, QR pairing, clipboard sync, file beaming, and media controls.",
       "category": "Tools",
-      "summary": "",
+      "summary": "Zero-cloud, end-to-end encrypted Android-to-macOS continuity bridge with Bluetooth-first transport, Wi-Fi mTLS 1.3 turbo mode, QR pairing, clipboard sync, file beaming, and media controls.",
       "problem": "",
       "howItWorks": [],
       "highlights": [],
       "stack": [],
       "languages": [],
       "createdAt": "2026-11-26T16:47:32Z",
-      "pushedAt": "2026-11-26T16:47:34Z",
+      "pushedAt": "2026-11-28T05:30:49Z",
       "url": "https://github.com/skandachandrashekar335-wq/Link-Me",
-      "homepage": null,
-      "live": null,
+      "homepage": "https://github.com/skandachandrashekar335-wq/Link-Me/releases/latest",
+      "live": {
+        "url": "https://github.com/skandachandrashekar335-wq/Link-Me/releases/latest",
+        "embeddable": false,
+        "shot": null,
+        "checkedAt": "2026-11-28T05:33:02.860Z"
+      },
       "stars": 0,
       "private": false
     },
@@ -455,7 +460,7 @@
         "url": "https://rent-pilot-nine.vercel.app",
         "embeddable": false,
         "shot": null,
-        "checkedAt": "2026-11-27T05:53:37.577Z"
+        "checkedAt": "2026-11-28T05:33:04.162Z"
       },
       "stars": 0,
       "private": false
@@ -486,7 +491,7 @@
         "url": "https://temporary-repo-pi.vercel.app",
         "embeddable": true,
         "shot": null,
-        "checkedAt": "2026-11-27T05:53:37.686Z"
+        "checkedAt": "2026-11-28T05:33:04.309Z"
       },
       "stars": 0,
       "private": false
